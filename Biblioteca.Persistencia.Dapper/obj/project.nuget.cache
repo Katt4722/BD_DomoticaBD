@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+sGonR+ggWRMwWxZPBJnfGaStZdHRjb+lkXvlRo/9TeCZdZFmeQV1DyelHlqmjYh2QnyOtCoQWCWdnAZnhqzeQ==",
+  "success": true,
+  "projectFilePath": "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj",
+  "expectedPackageFiles": [
+    "/home/et12alumno/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512"
+  ],
+  "logs": []
+}

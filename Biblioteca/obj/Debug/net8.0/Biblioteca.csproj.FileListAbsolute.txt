@@ -1,0 +1,11 @@
+/mnt/Datos/Karen/Biblioteca/bin/Debug/net8.0/Biblioteca.deps.json
+/mnt/Datos/Karen/Biblioteca/bin/Debug/net8.0/Biblioteca.dll
+/mnt/Datos/Karen/Biblioteca/bin/Debug/net8.0/Biblioteca.pdb
+/mnt/Datos/Karen/Biblioteca/obj/Debug/net8.0/Biblioteca.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/Datos/Karen/Biblioteca/obj/Debug/net8.0/Biblioteca.AssemblyInfoInputs.cache
+/mnt/Datos/Karen/Biblioteca/obj/Debug/net8.0/Biblioteca.AssemblyInfo.cs
+/mnt/Datos/Karen/Biblioteca/obj/Debug/net8.0/Biblioteca.csproj.CoreCompileInputs.cache
+/mnt/Datos/Karen/Biblioteca/obj/Debug/net8.0/Biblioteca.dll
+/mnt/Datos/Karen/Biblioteca/obj/Debug/net8.0/refint/Biblioteca.dll
+/mnt/Datos/Karen/Biblioteca/obj/Debug/net8.0/Biblioteca.pdb
+/mnt/Datos/Karen/Biblioteca/obj/Debug/net8.0/ref/Biblioteca.dll

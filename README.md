@@ -6,9 +6,13 @@
 <h2 align="center"> E.T. Nº12 D.E. 1º "Libertador Gral. José de San Martín" </h2>
 
 **Alumnos**: Karen Mejia, Jeni Leiva, Hernán Vazques, Joel Tito
+
 **Asignatura**:  AGBD
+
 **Nombre TP**: Domotica
+
 **Curso**: 5 ° 7
+
 **Año**:  2024
 
 # Domotica
@@ -29,7 +33,6 @@ https://github.com/Katt4722/BD_Domotica
 - Git - [Descargar](https://git-scm.com/downloads)
 - MySQL - [Descargar](https://dev.mysql.com/downloads/mysql/)
 - Dapper - Micro ORM para .NET
-- Entity Framework Core - Para la gestión de datos en .NET
 
 ## Pasos para iniciar el proyecto 
 

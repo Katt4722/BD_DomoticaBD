@@ -7,4 +7,6 @@ public interface IAdo
     void AltaConsumo (Consumo consumo);
     void AltaHistorialRegistro (HistorialRegistro historialRegistro);
     void AltaElectrodomestico (Electrodomestico electrodomestico);
+    Electrodomestico? ObtenerElectrodomestico (int IdElectrodomestico);
+    Casa? ObtenerCasa (int IdCasa);
 }

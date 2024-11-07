@@ -4,10 +4,27 @@ using Dapper;
 namespace Biblioteca.Persistencia.Dapper;
 public class AdoDapper : IAdo
 {
-    IDbConnection Conexion;
+    readonly IDbConnection _conexion;
+    private readonly string _queryElectrodomestico
+    = @"SELECT  *
+    FROM    Electrodomestico
+    WHERE   idElectrodomestico = @id;
+
+    SELECT  *
+    FROM    HistorialRegistro
+    WHERE   idElectrodomestico = @id;";
+
+    private readonly string _queryCasa
+    = @"SELECT *
+        FROM Casa
+        WHERE idCasa = @id;
+        
+        SELECT  *
+        FROM    Electrodomestico
+        WHERE   idCasa = @id;";
     
-    public AdoDapper(IDbConnection conexion)
-        => Conexion = conexion;
+        public AdoDapper(IDbConnection conexion)
+        => _conexion = conexion;
 
     public void AltaUsuario(Usuario usuario)
     {
@@ -18,7 +35,7 @@ public class AdoDapper : IAdo
         parametros.Add("@uncontrasenia",usuario.Contrasenia);
         parametros.Add("@unTelefono",usuario.Telefono);
 
-        Conexion.Execute("altaUsuario", parametros);
+        _conexion.Execute("altaUsuario", parametros);
 
         usuario.IdUsuario = parametros.Get<int>("@unidUsuario");
     }
@@ -29,7 +46,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unidCasa", direction: ParameterDirection.Output);
         parametros.Add("@unDireccion", casa.Direccion);
 
-        Conexion.Execute("altaCasa", parametros); // Carga el sp y los parametros desde dapper.
+        _conexion.Execute("altaCasa", parametros); // Carga el sp y los parametros desde dapper.
 
         casa.IdCasa = parametros.Get<int>("@unidCasa");
     }
@@ -45,7 +62,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unEncendido", electrodomestico.Encendido);
         parametros.Add("@unApagado", electrodomestico.Apagado);
 
-        Conexion.Execute("altaElectrodomestico", parametros);
+        _conexion.Execute("altaElectrodomestico", parametros);
 
         electrodomestico.IdElectrodomestico = parametros.Get<int>("@unidElectrodomestico");
     }
@@ -56,7 +73,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unidElectrodomestico", historialRegistro.IdElectrodomestico);
         parametros.Add("@unFechaHoraRegistro", historialRegistro.FechaHoraRegistro);
 
-        Conexion.Execute("altaHistorialRegistro", parametros , commandType: CommandType.StoredProcedure);
+        _conexion.Execute("altaHistorialRegistro", parametros , commandType: CommandType.StoredProcedure);
 
     }
 
@@ -69,8 +86,37 @@ public class AdoDapper : IAdo
         parametros.Add("@unDuracion", consumo.Duracion);
         parametros.Add("@unConsumoTotal", consumo.ConsumoTotal);
 
-        Conexion.Execute("altaConsumo", parametros);
+        _conexion.Execute("altaConsumo", parametros);
 
         consumo.IdConsumo = parametros.Get<int>("@unidConsumo");
     }
+    // query de Electrodomestico
+     public Electrodomestico? ObtenerElectrodomestico(int idElectrodomestico)
+{
+    using (var registro = _conexion.QueryMultiple(_queryElectrodomestico, new { id = idElectrodomestico }))
+    {
+        var electrodomestico = registro.ReadSingleOrDefault<Electrodomestico>();
+        if (electrodomestico is not null)
+        {
+            
+            electrodomestico.ConsumoMensual = registro.Read<HistorialRegistro>().ToList();
+        }
+        return electrodomestico;
+    }
+}  
+   // query de Casa
+   public Casa? ObtenerCasa (int idCasa)
+{
+    using(var registro = _conexion.QueryMultiple(_queryCasa, new { id = idCasa }))
+    {
+        var casa = registro.ReadSingleOrDefault<Casa>();
+        if (casa is not null)
+        {
+            casa.Electros = registro.Read<Electrodomestico>();
+        }
+        return casa;
+    }
 }
+// query de 
+}
+

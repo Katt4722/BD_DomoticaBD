@@ -5,7 +5,11 @@
 
 <h2 align="center"> E.T. Nº12 D.E. 1º "Libertador Gral. José de San Martín" </h2>
 
-**Alumnos**: Karen Mejia, Jeni Leiva, Hernán Vazques, Joel Tito
+**Alumnos**: 
+Karen Mejia: Encargada de hacer, la BD, las clases en c#, Dapper, Tests y Grants.
+Jeni Leiva: Encargada de realizar el DER.
+Hernán Vazques: Hizo los Trigers. 
+Joel Tito: Hizo los SP y los SF.
 
 **Asignatura**:  AGBD
 

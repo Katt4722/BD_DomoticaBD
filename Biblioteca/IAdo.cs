@@ -9,4 +9,5 @@ public interface IAdo
     void AltaElectrodomestico (Electrodomestico electrodomestico);
     Electrodomestico? ObtenerElectrodomestico (int IdElectrodomestico);
     Casa? ObtenerCasa (int IdCasa);
+    Usuario? UsuarioPorPass (string Correo, string Contrasenia);
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj": {}
+    "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj": {}
   },
   "projects": {
-    "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj": {
+    "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj",
+        "projectUniqueName": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj",
         "projectName": "Biblioteca.Persistencia.Dapper.Test",
-        "projectPath": "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj",
+        "projectPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj",
         "packagesPath": "/home/et12alumno/.nuget/packages/",
-        "outputPath": "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper.Test/obj/",
+        "outputPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper.Test/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/et12alumno/.nuget/NuGet/NuGet.Config"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj": {
-                "projectPath": "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj"
+              "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj": {
+                "projectPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj"
               },
-              "/mnt/Datos/Karen/Biblioteca/Biblioteca.csproj": {
-                "projectPath": "/mnt/Datos/Karen/Biblioteca/Biblioteca.csproj"
+              "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj": {
+                "projectPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj"
               }
             }
           }
@@ -94,18 +94,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj": {
+    "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj",
+        "projectUniqueName": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj",
         "projectName": "Biblioteca.Persistencia.Dapper",
-        "projectPath": "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj",
+        "projectPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj",
         "packagesPath": "/home/et12alumno/.nuget/packages/",
-        "outputPath": "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper/obj/",
+        "outputPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/et12alumno/.nuget/NuGet/NuGet.Config"
@@ -120,8 +120,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/mnt/Datos/Karen/Biblioteca/Biblioteca.csproj": {
-                "projectPath": "/mnt/Datos/Karen/Biblioteca/Biblioteca.csproj"
+              "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj": {
+                "projectPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj"
               }
             }
           }
@@ -157,18 +157,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/mnt/Datos/Karen/Biblioteca/Biblioteca.csproj": {
+    "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/Datos/Karen/Biblioteca/Biblioteca.csproj",
+        "projectUniqueName": "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj",
         "projectName": "Biblioteca",
-        "projectPath": "/mnt/Datos/Karen/Biblioteca/Biblioteca.csproj",
+        "projectPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj",
         "packagesPath": "/home/et12alumno/.nuget/packages/",
-        "outputPath": "/mnt/Datos/Karen/Biblioteca/obj/",
+        "outputPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/et12alumno/.nuget/NuGet/NuGet.Config"
@@ -210,7 +210,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

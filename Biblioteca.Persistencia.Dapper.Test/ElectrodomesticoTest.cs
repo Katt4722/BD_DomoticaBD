@@ -25,18 +25,10 @@ public class ElectrodomesticoTest : TestBase
     [Fact]
     public void ObtenerElectrodomesticoOK()
     {
-        var Heladera = new Electrodomestico
-        {
-            IdElectrodomestico = 1,
-            IdCasa = 1,
-            Nombre = "Gafa123",
-            Tipo = "Heladera",
-            Ubicacion = "Cocina",
-            Encendido = false,
-            Apagado = true
-        };
+        var Electrodomestico = Ado.ObtenerElectrodomestico(4);  
+        
+        Assert.NotNull(Electrodomestico);
+        Assert.Equal(2, Electrodomestico.IdElectrodomestico);
 
-        Ado.AltaElectrodomestico(Heladera);  
-        Assert.NotEqual(0,Heladera.IdElectrodomestico);
     }
 }

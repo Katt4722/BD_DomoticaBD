@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/Datos/Karen/Biblioteca/Biblioteca.csproj",
+      "projectUniqueName": "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj",
       "projectName": "Biblioteca",
-      "projectPath": "/mnt/Datos/Karen/Biblioteca/Biblioteca.csproj",
+      "projectPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj",
       "packagesPath": "/home/et12alumno/.nuget/packages/",
-      "outputPath": "/mnt/Datos/Karen/Biblioteca/obj/",
+      "outputPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/et12alumno/.nuget/NuGet/NuGet.Config"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

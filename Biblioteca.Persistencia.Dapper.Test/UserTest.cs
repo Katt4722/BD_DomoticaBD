@@ -19,4 +19,13 @@ public class UserTest : TestBase
 
         Assert.NotEqual(0, brenda.IdUsuario);
     }
+
+    [Fact]
+    public void UsuarioPorPass()
+    {
+        var contrasenia = Ado.UsuarioPorPass(contrasenia, correo);
+        
+        Assert.NotEmpty(Usuario);
+        Assert.Equal(2, Usuario.IdUsuario);
+    }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IyhmsfJdc85vXf7+CKgSegVeWGqn76OfrXPalzgSsOkKw6btXjBfKFYMt2N41iil+UBKMQXSMWxE/EP1zoS47Q==",
+  "dgSpecHash": "zYtAcCcATMV1rbliVWpLvMGm49O3APOqcAh/MsQwZGcs3jpoca2yxiTrSRO/DveSDAsONQtOpQ0zbjzRrLjXJg==",
   "success": true,
-  "projectFilePath": "/mnt/Datos/Karen/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj",
+  "projectFilePath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper.Test/Biblioteca.Persistencia.Dapper.Test.csproj",
   "expectedPackageFiles": [
     "/home/et12alumno/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
     "/home/et12alumno/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",

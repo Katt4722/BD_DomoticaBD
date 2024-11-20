@@ -20,13 +20,9 @@ public class CasaTest : TestBase
     [Fact]
     public void ObtenerCasaOK()
     {
-        var CasaBarracas = new Casa()
-        {
-            Direccion = "Barracas 1789"
-        };
-        Ado.AltaCasa(CasaBarracas);
-        Assert.NotEqual(0, CasaBarracas.IdCasa);
+        var Casa = Ado.ObtenerCasa(2);
         
+        Assert.NotNull(Casa);
+        Assert.Equal(2, Casa.IdCasa);
     }
 }
-//hola :V

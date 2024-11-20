@@ -23,6 +23,11 @@ public class AdoDapper : IAdo
         FROM    Electrodomestico
         WHERE   idCasa = @id;";
     
+    private readonly string _queryUsuario
+    = @"SELECT Correo, Contrasenia
+        FROM Usuario
+        WHERE Correo = @correo and Contrasenia = @contrasenia;";
+
         public AdoDapper(IDbConnection conexion)
         => _conexion = conexion;
 
@@ -117,6 +122,18 @@ public class AdoDapper : IAdo
         return casa;
     }
 }
-// query de 
+// query de Usuario
+public Usuario? UsuarioPorPass (string Correo, string Contrasenia)
+{
+    using (var registro = _conexion.QueryFirstOrDefault(_queryUsuario, new {correo = Correo, contrasenia = Contrasenia }))
+    {
+        var usuario = registro.ReadSingleOrDefault<Usuario>();
+        if (usuario is not null)
+        {
+            usuario.Correo = registro.Read<Usuario>();
+        }
+        return usuario;
+    }
+}
 }
 

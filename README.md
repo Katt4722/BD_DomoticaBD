@@ -10,7 +10,7 @@
 
 * **Jeni Leiva**: Encargada de realizar el DER.
 
-* **Hernán Vazques**: Hizo los Trigers. 
+* **Hernán Vazquez**: Hizo los Triggers. 
 
 * **Joel Tito**: Hizo los SP y los SF.
 

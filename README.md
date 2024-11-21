@@ -6,7 +6,7 @@
 <h2 align="center"> E.T. Nº12 D.E. 1º "Libertador Gral. José de San Martín" </h2>
 
 **Alumnos**:
-* **Karen Mejia**: Encargada de hacer la BD, las clases en c#, Dapper, Tests y Grants.
+* **Karen Mejia**: Encargada de hacer la BD, las clases en C#, Dapper, Tests y Grants.
 
 * **Jeni Leiva**: Encargada de realizar el DER.
 
@@ -23,7 +23,7 @@
 **Año**:  2024
 
 # Domotica
-Este proyecto se basa en Base de Datos de Domotica,con el objetivo de uso cotidiano y comodidad. A través podrás acceder a cualquier electrodomestico que se encuetre en tu casa/as, tendras la comodidad de encenderlos o apagarlos sin estar presente en ella, podrás ver el consumo de dicho electrodomestico para saber cuanto gastaste mensualmente, podrás ver todos los electrodomesticos que esten en tu casa en un formato de lista, y un dato no menor podras tener mas de dos casas desde tu mismo usuario y poder acceder a ellas en simultaneo.
+Este proyecto se basa en Base de Datos de Domotica,con el objetivo de uso cotidiano y comodidad. A través de esta BD, podrás controlar cualquier electrodoméstico que se encuentre en tu hogar, independientemente de tu ubicación; tendrás la comodidad de encenderlos o apagarlos sin estar presente en ella, podrás ver el consumo de dicho electrodoméstico para saber cuanto gastaste mensualmente, podrás ver todos los electrodomésticos que esten en tu casa en un formato de lista, y un dato no menor podrás tener más de dos casas desde tu mismo usuario y poder acceder a ellas en simultaneo.
 
 ## Comenzando 
 
@@ -85,7 +85,7 @@ Para desplegar el proyecto, sigue los siguientes pasos:
      ```
    - Luego, ingresa la contraseña de tu usuario y ejecuta:
      ```
-     SOURCE ddl.sql
+     install ddl.sql
      ```
 
 3. **Ejecutar el proyecto**:

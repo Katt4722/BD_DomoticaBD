@@ -62,32 +62,35 @@
     ]
   },
   "packageFolders": {
-    "/home/et12alumno/.nuget/packages/": {}
+    "C:\\Users\\Lab15-PC01\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj",
+      "projectUniqueName": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\BD_DomoticaBD\\Biblioteca.Persistencia.Dapper\\Biblioteca.Persistencia.Dapper.csproj",
       "projectName": "Biblioteca.Persistencia.Dapper",
-      "projectPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj",
-      "packagesPath": "/home/et12alumno/.nuget/packages/",
-      "outputPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/obj/",
+      "projectPath": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\BD_DomoticaBD\\Biblioteca.Persistencia.Dapper\\Biblioteca.Persistencia.Dapper.csproj",
+      "packagesPath": "C:\\Users\\Lab15-PC01\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\BD_DomoticaBD\\Biblioteca.Persistencia.Dapper\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/et12alumno/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Lab15-PC01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj": {
-              "projectPath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca/Biblioteca.csproj"
+            "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\BD_DomoticaBD\\Biblioteca\\Biblioteca.csproj": {
+              "projectPath": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\BD_DomoticaBD\\Biblioteca\\Biblioteca.csproj"
             }
           }
         }
@@ -96,6 +99,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -123,7 +131,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

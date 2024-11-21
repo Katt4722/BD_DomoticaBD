@@ -25,10 +25,11 @@ public class ElectrodomesticoTest : TestBase
     [Fact]
     public void ObtenerElectrodomesticoOK()
     {
-        var Electrodomestico = Ado.ObtenerElectrodomestico(4);  
+        var lavarropa = Ado.ObtenerElectrodomestico(1);  
         
-        Assert.NotNull(Electrodomestico);
-        Assert.Equal(2, Electrodomestico.IdElectrodomestico);
-
+        Assert.NotNull(lavarropa);
+        Assert.Equal("Lavarropa", lavarropa.Nombre);
+        Assert.Equal(1, lavarropa.IdElectrodomestico);
+        Assert.NotEmpty(lavarropa.ConsumoMensual);
     }
 }

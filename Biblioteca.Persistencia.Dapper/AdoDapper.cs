@@ -103,7 +103,6 @@ public class AdoDapper : IAdo
             var electrodomestico = registro.ReadSingleOrDefault<Electrodomestico>();
             if (electrodomestico is not null)
             {
-
                 electrodomestico.ConsumoMensual = registro.Read<HistorialRegistro>().ToList();
             }
             return electrodomestico;

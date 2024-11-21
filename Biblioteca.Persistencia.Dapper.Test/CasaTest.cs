@@ -24,5 +24,6 @@ public class CasaTest : TestBase
         
         Assert.NotNull(Casa);
         Assert.Equal(2, Casa.IdCasa);
+        Assert.Equal("Libertador 284", Casa.Direccion);
     }
 }

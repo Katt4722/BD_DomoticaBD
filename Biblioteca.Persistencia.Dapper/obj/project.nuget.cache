@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "iOZLHt4Z39MNWnUxeUEP1UVHFu1+t93pfIaSoG62VRzvu7S/wZ6mMC9fFu/Apm6d0KQ1O2wvoF0lh+xAhMEltg==",
+  "dgSpecHash": "zCnU+mz0DzM=",
   "success": true,
-  "projectFilePath": "/mnt/Datos/Karen/BD_Domotica/Biblioteca.Persistencia.Dapper/Biblioteca.Persistencia.Dapper.csproj",
+  "projectFilePath": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\BD_DomoticaBD\\Biblioteca.Persistencia.Dapper\\Biblioteca.Persistencia.Dapper.csproj",
   "expectedPackageFiles": [
-    "/home/et12alumno/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512"
+    "C:\\Users\\Lab15-PC01\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512"
   ],
   "logs": []
 }

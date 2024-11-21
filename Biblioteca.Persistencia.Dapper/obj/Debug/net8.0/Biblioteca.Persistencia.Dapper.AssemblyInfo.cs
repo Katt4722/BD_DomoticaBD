@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Biblioteca.Persistencia.Dapper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34555d4a8ea3cce47a254fbfac1319b1d44ea66e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c2e8e6811962da857dce64fc1eaa2fbbaad5488")]
 [assembly: System.Reflection.AssemblyProductAttribute("Biblioteca.Persistencia.Dapper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Biblioteca.Persistencia.Dapper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

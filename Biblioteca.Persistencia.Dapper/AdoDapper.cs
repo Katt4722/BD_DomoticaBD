@@ -127,7 +127,7 @@ public Usuario? UsuarioPorPass (string Correo, string Contrasenia)
 {
     using (var registro = _conexion.QueryFirstOrDefault(_queryUsuario, new {correo = Correo, contrasenia = Contrasenia }))
     {
-        var usuario = registro.ReadSingleOrDefault<Usuario>();
+        var usuario = registro.ReadSingleOrDefault<Usuario>(); // Preguntar
         if (usuario is not null)
         {
             usuario.Correo = registro.Read<Usuario>();

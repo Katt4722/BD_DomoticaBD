@@ -1,23 +1,24 @@
+-- Active: 1732199609219@@127.0.0.1@3306
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaUsuario $$
 CREATE PROCEDURE altaUsuario(OUT unidUsuario INT,
-							 IN unNombre VARCHAR(100),
-							 IN unCorreo VARCHAR(100),
-							 IN uncontrasenia CHAR(64),
-							 IN unTelefono VARCHAR(20))
+							IN unNombre VARCHAR(100),
+							IN unCorreo VARCHAR(100),
+							IN uncontrasenia CHAR(64),
+							IN unTelefono VARCHAR(20))
 BEGIN 
 	INSERT INTO Usuario (Nombre, Correo, contrasenia, Telefono)
-				 VALUES (unNombre, unCorreo, uncontrasenia, unTelefono);
+				VALUES (unNombre, unCorreo, uncontrasenia, unTelefono);
 	SET unidUsuario = LAST_INSERT_ID();
 END $$
- 
+
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaCasa $$
 CREATE PROCEDURE altaCasa (OUT unidCasa INT,
-						   IN unDireccion VARCHAR(100))
+						IN unDireccion VARCHAR(100))
 BEGIN 
 	INSERT INTO Casa (Direccion)
-			  VALUES (unDireccion);
+			VALUES (unDireccion);
 	SET unidCasa = LAST_INSERT_ID();
 END $$
 
@@ -32,24 +33,24 @@ CALL AltaCasa (@idCasaFlorida, 'Florida 327');
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaCasaUsuario $$
 CREATE PROCEDURE altaCasaUsuario (IN unidUsuario INT,
-								  IN unidCasa INT)
+								IN unidCasa INT)
 BEGIN 
 	INSERT INTO casaUsuario (idUsuario, idCasa)
-					 VALUES (unidUsuario, unidCasa);
+					VALUES (unidUsuario, unidCasa);
 END $$
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaElectrodomestico $$
 CREATE PROCEDURE altaElectrodomestico (OUT unidElectrodomestico INT, 
-									   IN unidCasa INT,
-                                       IN unNombre VARCHAR(100),
-                                       IN unTipo VARCHAR(50),
-                                       IN unUbicacion VARCHAR(50),
-                                       IN unEncendido BOOL,
-                                       IN unApagado BOOL)
+									IN unidCasa INT,
+                                    IN unNombre VARCHAR(100),
+                                    IN unTipo VARCHAR(50),
+                                    IN unUbicacion VARCHAR(50),
+                                    IN unEncendido BOOL,
+                                    IN unApagado BOOL)
 BEGIN 
 	INSERT INTO Electrodomestico (idCasa, Nombre, Tipo, Ubicacion, Encendido, Apagado)
-						  VALUES (unidCasa, unNombre,unTipo, unUbicacion, unEncendido, unApagado);
+						VALUES (unidCasa, unNombre,unTipo, unUbicacion, unEncendido, unApagado);
 	SET unidElectrodomestico = LAST_INSERT_ID();
 END $$
 
@@ -62,7 +63,7 @@ CREATE PROCEDURE altaHistorialRegistro (IN unidElectrodomestico INT,
                                         IN unFechaHoraRegistro DATETIME)
 BEGIN 
 	INSERT INTO HistorialRegistro (idElectrodomestico, FechaHoraRegistro)
-						   VALUES (unidElectrodomestico, unFechaHoraRegistro);
+						VALUES (unidElectrodomestico, unFechaHoraRegistro);
 END $$
 
 DELIMITER ;
@@ -72,13 +73,13 @@ CALL altaHistorialRegistro(@idElectrodomestico, '2022-06-02 17:28:23');
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaConsumo $$
 CREATE PROCEDURE altaConsumo (OUT unidConsumo INT,
-							  IN unidElectrodomestico INT,
-                              IN uninicio DATETIME,
-                              IN unDuracion TIME,
-                              IN unConsumoTotal FLOAT)
+							IN unidElectrodomestico INT,
+                            IN uninicio DATETIME,
+                            IN unDuracion TIME,
+                            IN unConsumoTotal FLOAT)
 BEGIN 
 	INSERT INTO Consumo (idElectrodomestico, inicio, Duracion, ConsumoTotal)
-				 VALUES (unidElectrodomestico, uninicio, unDuracion, unConsumoTotal);
+				VALUES (unidElectrodomestico, uninicio, unDuracion, unConsumoTotal);
 	SET unidConsumo = LAST_INSERT_ID();
 END $$
 

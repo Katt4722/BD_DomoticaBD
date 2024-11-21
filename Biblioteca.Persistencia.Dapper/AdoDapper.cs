@@ -22,14 +22,14 @@ public class AdoDapper : IAdo
         SELECT  *
         FROM    Electrodomestico
         WHERE   idCasa = @id;";
-    
+
     private readonly string _queryUsuario
     = @"SELECT Correo, Contrasenia
         FROM Usuario
         WHERE Correo = @correo and Contrasenia = @contrasenia;";
 
-        public AdoDapper(IDbConnection conexion)
-        => _conexion = conexion;
+    public AdoDapper(IDbConnection conexion)
+    => _conexion = conexion;
 
     public void AltaUsuario(Usuario usuario)
     {
@@ -37,15 +37,15 @@ public class AdoDapper : IAdo
         parametros.Add("@unidUsuario", direction: ParameterDirection.Output);
         parametros.Add("@unNombre", usuario.Nombre);
         parametros.Add("@unCorreo", usuario.Correo);
-        parametros.Add("@uncontrasenia",usuario.Contrasenia);
-        parametros.Add("@unTelefono",usuario.Telefono);
+        parametros.Add("@uncontrasenia", usuario.Contrasenia);
+        parametros.Add("@unTelefono", usuario.Telefono);
 
         _conexion.Execute("altaUsuario", parametros);
 
         usuario.IdUsuario = parametros.Get<int>("@unidUsuario");
     }
 
-    public void AltaCasa (Casa casa)
+    public void AltaCasa(Casa casa)
     {
         var parametros = new DynamicParameters();
         parametros.Add("@unidCasa", direction: ParameterDirection.Output);
@@ -56,7 +56,7 @@ public class AdoDapper : IAdo
         casa.IdCasa = parametros.Get<int>("@unidCasa");
     }
 
-    public void AltaElectrodomestico (Electrodomestico electrodomestico)
+    public void AltaElectrodomestico(Electrodomestico electrodomestico)
     {
         var parametros = new DynamicParameters();
         parametros.Add("@unidElectrodomestico", direction: ParameterDirection.Output);
@@ -72,17 +72,17 @@ public class AdoDapper : IAdo
         electrodomestico.IdElectrodomestico = parametros.Get<int>("@unidElectrodomestico");
     }
 
-    public void AltaHistorialRegistro (HistorialRegistro historialRegistro)
+    public void AltaHistorialRegistro(HistorialRegistro historialRegistro)
     {
         var parametros = new DynamicParameters();
         parametros.Add("@unidElectrodomestico", historialRegistro.IdElectrodomestico);
         parametros.Add("@unFechaHoraRegistro", historialRegistro.FechaHoraRegistro);
 
-        _conexion.Execute("altaHistorialRegistro", parametros , commandType: CommandType.StoredProcedure);
+        _conexion.Execute("altaHistorialRegistro", parametros, commandType: CommandType.StoredProcedure);
 
     }
 
-    public void AltaConsumo (Consumo consumo)
+    public void AltaConsumo(Consumo consumo)
     {
         var parametros = new DynamicParameters();
         parametros.Add("@unidConsumo", direction: ParameterDirection.Output);
@@ -96,44 +96,38 @@ public class AdoDapper : IAdo
         consumo.IdConsumo = parametros.Get<int>("@unidConsumo");
     }
     // query de Electrodomestico
-     public Electrodomestico? ObtenerElectrodomestico(int idElectrodomestico)
-{
-    using (var registro = _conexion.QueryMultiple(_queryElectrodomestico, new { id = idElectrodomestico }))
+    public Electrodomestico? ObtenerElectrodomestico(int idElectrodomestico)
     {
-        var electrodomestico = registro.ReadSingleOrDefault<Electrodomestico>();
-        if (electrodomestico is not null)
+        using (var registro = _conexion.QueryMultiple(_queryElectrodomestico, new { id = idElectrodomestico }))
         {
-            
-            electrodomestico.ConsumoMensual = registro.Read<HistorialRegistro>().ToList();
+            var electrodomestico = registro.ReadSingleOrDefault<Electrodomestico>();
+            if (electrodomestico is not null)
+            {
+
+                electrodomestico.ConsumoMensual = registro.Read<HistorialRegistro>().ToList();
+            }
+            return electrodomestico;
         }
-        return electrodomestico;
     }
-}  
-   // query de Casa
-   public Casa? ObtenerCasa (int idCasa)
-{
-    using(var registro = _conexion.QueryMultiple(_queryCasa, new { id = idCasa }))
+    // query de Casa
+    public Casa? ObtenerCasa(int idCasa)
     {
-        var casa = registro.ReadSingleOrDefault<Casa>();
-        if (casa is not null)
+        using (var registro = _conexion.QueryMultiple(_queryCasa, new { id = idCasa }))
         {
-            casa.Electros = registro.Read<Electrodomestico>();
+            var casa = registro.ReadSingleOrDefault<Casa>();
+            if (casa is not null)
+            {
+                casa.Electros = registro.Read<Electrodomestico>();
+            }
+            return casa;
         }
-        return casa;
     }
-}
-// query de Usuario
-public Usuario? UsuarioPorPass (string Correo, string Contrasenia)
-{
-    using (var registro = _conexion.QueryFirstOrDefault(_queryUsuario, new {correo = Correo, contrasenia = Contrasenia }))
+    // query de Usuario
+    public Usuario? UsuarioPorPass(string Correo, string Contrasenia)
     {
-        var usuario = registro.ReadSingleOrDefault<Usuario>();
-        if (usuario is not null)
-        {
-            usuario.Correo = registro.Read<Usuario>();
-        }
+        var usuario = _conexion.QueryFirstOrDefault(_queryUsuario, new { correo = Correo, contrasenia = Contrasenia });
         return usuario;
+
     }
-}
 }
 

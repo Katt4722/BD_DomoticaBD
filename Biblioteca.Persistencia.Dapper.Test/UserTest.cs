@@ -21,11 +21,11 @@ public class UserTest : TestBase
     }
 
     [Fact]
-    public void UsuarioPorPass()
+    public void UsuarioPorPassOK()
     {
-        var contrasenia = Ado.UsuarioPorPass(contrasenia, correo);
+        var usuario = Ado.UsuarioPorPass("123456", "bren@da.com");
         
-        Assert.NotEmpty(Usuario);
-        Assert.Equal(2, Usuario.IdUsuario);
+        Assert.NotNull(usuario);
+        Assert.Equal(2, usuario.IdUsuario);
     }
 }

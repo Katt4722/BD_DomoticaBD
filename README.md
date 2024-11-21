@@ -85,7 +85,7 @@ Para desplegar el proyecto, sigue los siguientes pasos:
      ```
    - Luego, ingresa la contraseña de tu usuario y ejecuta:
      ```
-     SOURCE ddl.sql
+     install ddl.sql
      ```
 
 3. **Ejecutar el proyecto**:

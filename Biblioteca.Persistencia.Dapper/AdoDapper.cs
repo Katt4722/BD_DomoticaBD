@@ -41,7 +41,20 @@ public class AdoDapper : IAdo
         parametros.Add("@unTelefono", usuario.Telefono);
 
         _conexion.Execute("altaUsuario", parametros);
+        usuario.IdUsuario = parametros.Get<int>("@unidUsuario");
+    }
 
+    public async Task AltaUsuarioAsync(Usuario usuario)
+    {
+        var parametros = new DynamicParameters(new
+        {
+            unidUsuario = 0,  
+            unNombre = usuario.Nombre,
+            unCorreo = usuario.Correo,
+            uncontrasenia = usuario.Contrasenia,
+            unTelefono = usuario.Telefono
+        });
+        await _conexion.ExecuteAsync("altaUsuario", parametros);
         usuario.IdUsuario = parametros.Get<int>("@unidUsuario");
     }
 

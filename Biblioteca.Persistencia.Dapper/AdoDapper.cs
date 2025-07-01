@@ -33,43 +33,61 @@ public class AdoDapper : IAdo
 
     public void AltaUsuario(Usuario usuario)
     {
+        var parametros = ParametrosAlta(usuario);
+
+        _conexion.Execute("altaUsuario", parametros);
+        usuario.IdUsuario = parametros.Get<int>("@unidUsuario");
+    }
+
+    private static DynamicParameters ParametrosAlta(Usuario usuario)
+    {
         var parametros = new DynamicParameters();
         parametros.Add("@unidUsuario", direction: ParameterDirection.Output);
         parametros.Add("@unNombre", usuario.Nombre);
         parametros.Add("@unCorreo", usuario.Correo);
         parametros.Add("@uncontrasenia", usuario.Contrasenia);
         parametros.Add("@unTelefono", usuario.Telefono);
-
-        _conexion.Execute("altaUsuario", parametros);
-        usuario.IdUsuario = parametros.Get<int>("@unidUsuario");
+        return parametros;
     }
 
     public async Task AltaUsuarioAsync(Usuario usuario)
     {
-        var parametros = new DynamicParameters(new
-        {
-            unidUsuario = 0,  
-            unNombre = usuario.Nombre,
-            unCorreo = usuario.Correo,
-            uncontrasenia = usuario.Contrasenia,
-            unTelefono = usuario.Telefono
-        });
+        var parametros = ParametrosAlta(usuario);
         await _conexion.ExecuteAsync("altaUsuario", parametros);
         usuario.IdUsuario = parametros.Get<int>("@unidUsuario");
     }
 
     public void AltaCasa(Casa casa)
     {
+        var parametros = AltaParametros(casa);
+
+        _conexion.Execute("altaCasa", parametros); // Carga el sp y los parametros desde dapper.
+        casa.IdCasa = parametros.Get<int>("@unidCasa");
+    }
+
+    private static DynamicParameters AltaParametros(Casa casa)
+    {
         var parametros = new DynamicParameters();
         parametros.Add("@unidCasa", direction: ParameterDirection.Output);
         parametros.Add("@unDireccion", casa.Direccion);
+        return parametros;
+    }
 
-        _conexion.Execute("altaCasa", parametros); // Carga el sp y los parametros desde dapper.
-
+    public async Task AltaCasaAsync(Casa casa)
+    {
+        var parametros = AltaParametros(casa);
+        await _conexion.ExecuteAsync("altaCasa", parametros);
         casa.IdCasa = parametros.Get<int>("@unidCasa");
     }
 
     public void AltaElectrodomestico(Electrodomestico electrodomestico)
+    {
+        var parametros = ParametrosAltaElectro(electrodomestico);
+        _conexion.Execute("altaElectrodomestico", parametros);
+        electrodomestico.IdElectrodomestico = parametros.Get<int>("@unidElectrodomestico");
+    }
+
+    private static DynamicParameters ParametrosAltaElectro(Electrodomestico electrodomestico)
     {
         var parametros = new DynamicParameters();
         parametros.Add("@unidElectrodomestico", direction: ParameterDirection.Output);
@@ -79,20 +97,34 @@ public class AdoDapper : IAdo
         parametros.Add("@unUbicacion", electrodomestico.Ubicacion);
         parametros.Add("@unEncendido", electrodomestico.Encendido);
         parametros.Add("@unApagado", electrodomestico.Apagado);
+        return parametros;
+    }
 
-        _conexion.Execute("altaElectrodomestico", parametros);
-
+    public async Task AltaElectrodomesticoAsync(Electrodomestico electrodomestico)
+    {
+        var parametros = ParametrosAltaElectro(electrodomestico);
+        await _conexion.ExecuteAsync("altaElectrdomestico", parametros);
         electrodomestico.IdElectrodomestico = parametros.Get<int>("@unidElectrodomestico");
     }
 
     public void AltaHistorialRegistro(HistorialRegistro historialRegistro)
     {
+        var parametros = ParametrosAltaHistorial(historialRegistro);
+        _conexion.Execute("altaHistorialRegistro", parametros, commandType: CommandType.StoredProcedure);
+    }
+
+    private static DynamicParameters ParametrosAltaHistorial(HistorialRegistro historialRegistro)
+    {
         var parametros = new DynamicParameters();
         parametros.Add("@unidElectrodomestico", historialRegistro.IdElectrodomestico);
         parametros.Add("@unFechaHoraRegistro", historialRegistro.FechaHoraRegistro);
+        return parametros;
+    }
 
-        _conexion.Execute("altaHistorialRegistro", parametros, commandType: CommandType.StoredProcedure);
-
+    public async Task AltaHistorialRegistroAsync(HistorialRegistro historialRegistro)
+    {
+        var parametros = ParametrosAltaHistorial(historialRegistro);
+        await _conexion.ExecuteAsync("altaHistorialregistro", parametros);
     }
 
     public void AltaConsumo(Consumo consumo)

@@ -7,6 +7,7 @@ public interface IAdo
     void AltaCasa (Casa casa);
     Task AltaCasaAsync(Casa casa);
     void AltaConsumo(Consumo consumo);
+    Task AltaConsumoAsync(Consumo consumo);
     void AltaHistorialRegistro(HistorialRegistro historialRegistro);
     Task AltaHistorialRegistroAsync(HistorialRegistro historialRegistro);
     void AltaElectrodomestico(Electrodomestico electrodomestico);

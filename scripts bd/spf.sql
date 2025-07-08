@@ -1,4 +1,4 @@
--- Active: 1732199609219@@127.0.0.1@3306
+-- Active: 1752002174880@@127.0.0.1@3306@5to_domotica
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaUsuario $$
 CREATE PROCEDURE altaUsuario(OUT unidUsuario INT,

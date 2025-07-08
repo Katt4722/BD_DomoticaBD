@@ -129,6 +129,12 @@ public class AdoDapper : IAdo
 
     public void AltaConsumo(Consumo consumo)
     {
+        var parametros = ParametrosAltaConsumo(consumo);
+        _conexion.Execute("altaConsumo", parametros);
+    }
+
+    private static DynamicParameters ParametrosAltaConsumo(Consumo consumo)
+    {
         var parametros = new DynamicParameters();
         parametros.Add("@unidConsumo", direction: ParameterDirection.Output);
         parametros.Add("@unidElectrodomestico", consumo.IdElectrodomestico);
@@ -136,10 +142,15 @@ public class AdoDapper : IAdo
         parametros.Add("@unDuracion", consumo.Duracion);
         parametros.Add("@unConsumoTotal", consumo.ConsumoTotal);
 
-        _conexion.Execute("altaConsumo", parametros);
-
         consumo.IdConsumo = parametros.Get<int>("@unidConsumo");
+        return parametros;
     }
+    public async Task AltaConsumoAsync(Consumo consumo)
+    {
+        var parametros = ParametrosAltaConsumo(consumo);
+        await _conexion.ExecuteAsync("altaConsumo", parametros);
+    }
+
     // query de Electrodomestico
     public Electrodomestico? ObtenerElectrodomestico(int idElectrodomestico)
     {
@@ -153,6 +164,7 @@ public class AdoDapper : IAdo
             return electrodomestico;
         }
     }
+
     // query de Casa
     public Casa? ObtenerCasa(int idCasa)
     {
@@ -166,6 +178,7 @@ public class AdoDapper : IAdo
             return casa;
         }
     }
+    
     // query de Usuario
     public Usuario? UsuarioPorPass(string Correo, string Contrasenia)
     {

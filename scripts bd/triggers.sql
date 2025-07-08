@@ -1,3 +1,4 @@
+-- Active: 1752002174880@@127.0.0.1@3306@5to_domotica
 DELIMITER $$
 DROP TRIGGER IF EXISTS AftInsElectrodomestico$$
 CREATE TRIGGER AftInsElectrodomestico AFTER INSERT ON Electrodomestico

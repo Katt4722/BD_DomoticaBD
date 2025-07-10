@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Immutable;
+using System.Data;
 using Dapper;
 
 namespace Biblioteca.Persistencia.Dapper;
@@ -162,6 +163,20 @@ public class AdoDapper : IAdo
                 electrodomestico.ConsumoMensual = registro.Read<HistorialRegistro>().ToList();
             }
             return electrodomestico;
+        }
+    }
+
+    public async Task <Electrodomestico?> ObtenerElectrodomesticoAsync(int idElectrodomestico)
+    {
+        using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomestico, new { id = idElectrodomestico }))
+        {
+            var electrodomestico = await registro.ReadSingleOrDefaultAsync<Electrodomestico>();
+
+            if (electrodomestico is not null)
+            {
+                electrodomestico.ConsumoMensual = (await registro.ReadAsync<HistorialRegistro>()).ToList();
+            }
+            return electrodomestico;  
         }
     }
 

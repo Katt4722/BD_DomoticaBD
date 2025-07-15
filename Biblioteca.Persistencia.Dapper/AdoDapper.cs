@@ -3,6 +3,7 @@ using System.Data;
 using Dapper;
 
 namespace Biblioteca.Persistencia.Dapper;
+
 public class AdoDapper : IAdo
 {
     readonly IDbConnection _conexion;
@@ -27,7 +28,7 @@ public class AdoDapper : IAdo
     private readonly string _queryUsuario
     = @"SELECT Correo, Contrasenia
         FROM Usuario
-        WHERE Correo = @correo and Contrasenia = @contrasenia;";
+        WHERE Correo = @correo and Contrasenia = SHA2(@contrasenia, 256);";
 
     public AdoDapper(IDbConnection conexion)
     => _conexion = conexion;
@@ -166,7 +167,7 @@ public class AdoDapper : IAdo
         }
     }
 
-    public async Task <Electrodomestico?> ObtenerElectrodomesticoAsync(int idElectrodomestico)
+    public async Task<Electrodomestico?> ObtenerElectrodomesticoAsync(int idElectrodomestico)
     {
         using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomestico, new { id = idElectrodomestico }))
         {
@@ -176,7 +177,7 @@ public class AdoDapper : IAdo
             {
                 electrodomestico.ConsumoMensual = (await registro.ReadAsync<HistorialRegistro>()).ToList();
             }
-            return electrodomestico;  
+            return electrodomestico;
         }
     }
 
@@ -193,13 +194,31 @@ public class AdoDapper : IAdo
             return casa;
         }
     }
-    
+    public async Task<Casa?> ObtenerCasaAsync(int idCasa)
+    {
+        using (var registro = await _conexion.QueryMultipleAsync(_queryCasa, new { id = idCasa }))
+        {
+            var casa = await registro.ReadSingleOrDefaultAsync<Casa>();
+            if (casa is not null)
+            {
+                casa.Electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
+            }
+            return casa;
+        }
+    }
+
     // query de Usuario
     public Usuario? UsuarioPorPass(string Correo, string Contrasenia)
     {
         var usuario = _conexion.QueryFirstOrDefault(_queryUsuario, new { correo = Correo, contrasenia = Contrasenia });
         return usuario;
 
+    }
+
+    public async Task<Usuario?> UsuarioPorPassAsync(string Correo, string Contrasenia)
+    {
+        var usuario = await _conexion.QueryFirstOrDefaultAsync(_queryUsuario, new { correo = Correo, contrasenia = Contrasenia });
+        return usuario;
     }
 }
 

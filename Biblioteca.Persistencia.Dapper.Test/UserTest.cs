@@ -23,8 +23,16 @@ public class UserTest : TestBase
     [Fact]
     public void UsuarioPorPassOK()
     {
-        var usuario = Ado.UsuarioPorPass("123456", "bren@da.com");
-        
+        var usuario = Ado.UsuarioPorPass("bren@da.com", "123456");
+
+        Assert.NotNull(usuario);
+        Assert.Equal(2, usuario.IdUsuario);
+    }
+
+    [Fact]
+    public async Task UsuarioPorPassOkAsync()
+    {
+        var usuario = await Ado.UsuarioPorPassAsync("123456", "bren@da.com");
         Assert.NotNull(usuario);
         Assert.Equal(2, usuario.IdUsuario);
     }

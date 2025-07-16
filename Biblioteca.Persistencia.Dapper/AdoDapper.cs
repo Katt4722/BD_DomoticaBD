@@ -81,6 +81,7 @@ public class AdoDapper : IAdo
         await _conexion.ExecuteAsync("altaCasa", parametros);
         casa.IdCasa = parametros.Get<int>("@unidCasa");
     }
+    
 
     public void AltaElectrodomestico(Electrodomestico electrodomestico)
     {

@@ -32,5 +32,26 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/", () => "Hello World!");
+// Trae electrodomesticos por id
+app.MapGet("/electrodomesticos/{id}", async (int id, IAdo repo) =>
+    await repo.ObtenerElectrodomesticoAsync(id));
+
+// Agrega un nuevo electrodomestico
+app.MapPost("/electrodomesticos", async (Electrodomestico electro, IAdo repo) =>
+{
+    await repo.AltaElectrodomesticoAsync(electro);
+    return Results.Created($"/electrodomesticos/{electro.IdElectrodomestico}", electro);
+}); 
+
+// Trae casas por id
+app.MapGet("/casas/{id}", async (int id, IAdo repo) =>
+    await repo.ObtenerCasaAsync(id));
+
+// Agrega una nueva casa
+app.MapPost("/casas", async (Casa casa, IAdo repo) =>
+{
+    await repo.AltaCasaAsync(casa);
+    return Results.Created($"/casas/{casa.IdCasa}", casa);
+});
 
 app.Run();

@@ -14,9 +14,6 @@ public class AdoDapper : IAdo
 
     SELECT  *
     FROM    HistorialRegistro
-    WHERE   idElectrodomestico = @id;
-
-    DELETE FROM  Electrodomestico
     WHERE   idElectrodomestico = @id;";
 
     private readonly string _queryCasa
@@ -31,7 +28,6 @@ public class AdoDapper : IAdo
     private readonly string _deleteCasaQuery
     = @"DELETE FROM Casa 
         WHERE idCasa = @id;";
-
 
     private readonly string _deleteElectrodomesticoQuery
     = @"DELETE FROM Electrodomestico 

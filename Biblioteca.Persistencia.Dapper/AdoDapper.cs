@@ -14,6 +14,9 @@ public class AdoDapper : IAdo
 
     SELECT  *
     FROM    HistorialRegistro
+    WHERE   idElectrodomestico = @id;
+
+    DELETE FROM  Electrodomestico
     WHERE   idElectrodomestico = @id;";
 
     private readonly string _queryCasa
@@ -25,6 +28,14 @@ public class AdoDapper : IAdo
         FROM    Electrodomestico
         WHERE   idCasa = @id;";
 
+    private readonly string _deleteCasaQuery
+    = @"DELETE FROM Casa 
+        WHERE idCasa = @id;";
+
+
+    private readonly string _deleteElectrodomesticoQuery
+    = @"DELETE FROM Electrodomestico 
+        WHERE idElectrodomestico = @id;";
     private readonly string _queryUsuario
     = @"SELECT Correo, Contrasenia
         FROM Usuario
@@ -81,7 +92,7 @@ public class AdoDapper : IAdo
         await _conexion.ExecuteAsync("altaCasa", parametros);
         casa.IdCasa = parametros.Get<int>("@unidCasa");
     }
-    
+
 
     public void AltaElectrodomestico(Electrodomestico electrodomestico)
     {
@@ -109,6 +120,7 @@ public class AdoDapper : IAdo
         await _conexion.ExecuteAsync("altaElectrdomestico", parametros);
         electrodomestico.IdElectrodomestico = parametros.Get<int>("@unidElectrodomestico");
     }
+
 
     public void AltaHistorialRegistro(HistorialRegistro historialRegistro)
     {
@@ -182,6 +194,11 @@ public class AdoDapper : IAdo
         }
     }
 
+        public async Task<Electrodomestico?> EliminarElectrodomesticoAsync(int idElectrodomestico)
+        {
+            await _conexion.ExecuteAsync(_deleteElectrodomesticoQuery, new { id = idElectrodomestico });
+            return null;
+        }
     // query de Casa
     public Casa? ObtenerCasa(int idCasa)
     {
@@ -207,6 +224,10 @@ public class AdoDapper : IAdo
             return casa;
         }
     }
+        public async Task EliminarCasaAsync(int idCasa)
+    {
+        await _conexion.ExecuteAsync(_deleteCasaQuery, new { id = idCasa });
+    }
 
     // query de Usuario
     public Usuario? UsuarioPorPass(string Correo, string Contrasenia)
@@ -221,5 +242,6 @@ public class AdoDapper : IAdo
         var usuario = await _conexion.QueryFirstOrDefaultAsync(_queryUsuario, new { correo = Correo, contrasenia = Contrasenia });
         return usuario;
     }
+
 }
 

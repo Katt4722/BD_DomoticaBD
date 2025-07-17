@@ -1,4 +1,4 @@
--- Active: 1752002174880@@127.0.0.1@3306@5to_domotica
+Active: 1752002174880@@127.0.0.1@3306@5to_domotica
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaUsuario $$
 CREATE PROCEDURE altaUsuario(OUT unidUsuario INT,
@@ -11,6 +11,10 @@ BEGIN
 				VALUES (unNombre, unCorreo, uncontrasenia, unTelefono);
 	SET unidUsuario = LAST_INSERT_ID();
 END $$
+
+DELIMITER;
+CALL altaUsuario (@idUsuarioCori, 'Corina', 'Cori@gmail.com', 22131,1123562);
+CALL altaUsuario (@idUsuarioDani, 'Daniel', 'Dani@gmail.com', 78231,1569823);
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaCasa $$
@@ -56,6 +60,8 @@ END $$
 
 DELIMITER ;
 CALL AltaElectrodomestico (@idElectrodomestico, @idCasaFlorida, 'Lavarropa', 'Lavarropa', 'Lavadero', FALSE, TRUE);
+CALL AltaElectrodomestico (@idElectrodomestico, 2, 'Heladera', 'Heladera', 'Cocina', FALSE, TRUE);
+CALL AltaElectrodomestico (@idElectrodomestico, 3, 'Cafetera Full', 'Cafetera', 'Mesada', FALSE, TRUE);
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaHistorialRegistro $$

@@ -34,8 +34,12 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/", () => "Hello World!");
 // Trae electrodomesticos por id
 app.MapGet("/electrodomesticos/{id}", async (int id, IAdo repo) =>
-    await repo.ObtenerElectrodomesticoAsync(id));
-
+{
+    var electro = await repo.ObtenerElectrodomesticoAsync(id);
+    return electro is not null
+        ? Results.Ok(electro)
+        : Results.NotFound("Electrodomestico no encontrado");
+});
 // Agrega un nuevo electrodomestico
 app.MapPost("/electrodomesticos", async (Electrodomestico electro, IAdo repo) =>
 {

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Biblioteca.Electrodomestico>
+
+<h2>Lista de Electrodomésticos</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Ubicación</th>
+            <th>Encendido</th>
+            <th>Apagado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var e in Model)
+        {
+            <tr>
+                <td>@e.IdElectrodomestico</td>
+                <td>@e.Nombre</td>
+                <td>@e.Tipo</td>
+                <td>@e.Ubicacion</td>
+                <td>@e.Encendido</td>
+                <td>@e.Apagado</td>
+            </tr>
+        }
+    </tbody>
+</table>

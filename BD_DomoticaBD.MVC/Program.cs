@@ -1,7 +1,20 @@
+using Biblioteca.Persistencia.Dapper;
+using System.Data.SqlClient;
+using Biblioteca;
+using MySqlConnector;
+using System.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IAdo>(sp =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("MySQL");
+    var connection = new MySqlConnection(connectionString);
+    return new AdoDapper(connection);
+});
 
 var app = builder.Build();
 

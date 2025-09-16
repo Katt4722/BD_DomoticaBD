@@ -3,26 +3,34 @@ using Microsoft.AspNetCore.Mvc;
 using BD_DomoticaBD.MVC.Models;
 using Biblioteca.Persistencia.Dapper;
 using Biblioteca;
+using MySqlConnector;
+using System.Data;
 
 namespace BD_DomoticaBD.MVC.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IAdo Ado;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, IAdo ado)
     {
         _logger = logger;
+        Ado = ado;
     }
 
-    public IActionResult Index()
+    // public IActionResult Index()
+    // {
+    //     var casa = Ado.ObtenerCasa(1);
+    //     var lista = casa?.Electros?? new List<Electrodomestico>();
+    //     return View(casa);
+    // }
+    
+    public async Task<IActionResult> Index()
     {
-        var lista = new List<Electrodomestico>
-        {
-            new Electrodomestico { IdElectrodomestico = 1, IdCasa = 1, Nombre = "Lavarropa", Tipo = "Lavado", Ubicacion = "Lavadero", Encendido = false, Apagado = true },
-            new Electrodomestico { IdElectrodomestico = 2, IdCasa = 1, Nombre = "Heladera", Tipo = "Refrigeración", Ubicacion = "Cocina", Encendido = true, Apagado = false }
-        };
-        return View(lista);
+        var casa = await Ado.ObtenerCasaAsync(1);
+        var lista = casa?.Electros?? new List<Electrodomestico>();
+        return View(casa);
     }
 
     public IActionResult Privacy()

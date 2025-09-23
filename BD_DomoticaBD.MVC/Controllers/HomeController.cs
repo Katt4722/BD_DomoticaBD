@@ -28,10 +28,11 @@ public class HomeController : Controller
     
     public async Task<IActionResult> Index()
     {
-        var casa = await Ado.ObtenerCasaAsync(1);
-        var lista = casa?.Electros?? new List<Electrodomestico>();
-        return View(casa);
+        var casas = await Ado.ObtenerCasaAsync(5); 
+        
+        return View(casas);
     }
+
 
     public IActionResult Privacy()
     {

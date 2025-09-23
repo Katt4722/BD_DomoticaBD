@@ -1,6 +1,9 @@
-﻿@model IEnumerable<Biblioteca.Electrodomestico>
+﻿@model Biblioteca.Casa
 
-<h2>Lista de Electrodomésticos</h2>
+<h2>Casa: @Model.IdCasa</h2>
+<p>Dirección: @Model.Direccion</p>
+
+<h4>Electrodomésticos:</h4>
 <table class="table">
     <thead>
         <tr>
@@ -13,11 +16,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var e in Model)
+        @foreach (var e in Model.Electros)
         {
             <tr>
                 <td>@e.IdElectrodomestico</td>
-                <td>@e.Nombre</td>
+                <td>@e.Nombre</td> 
                 <td>@e.Tipo</td>
                 <td>@e.Ubicacion</td>
                 <td>@e.Encendido</td>

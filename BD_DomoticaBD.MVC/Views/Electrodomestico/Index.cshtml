@@ -1,0 +1,44 @@
+@model List<Biblioteca.Electrodomestico>
+
+@{
+    var idCasa = ViewBag.IdCasa ?? 1;
+}
+
+<h2>Listado de Electrodomésticos</h2>
+
+<form method="get" asp-controller="Electrodomestico" asp-action="Index" class="mb-3">
+    <label for="idCasa">Selecciona la casa:</label>
+    <input type="number" name="idCasa" id="idCasa" value="@idCasa" min="1" class="form-control" style="width:100px;display:inline-block;" />
+    <button type="submit" class="btn btn-primary btn-sm">Ver</button>
+</form>
+
+<a asp-action="Alta" class="btn btn-primary">Agregar Electrodoméstico</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Ubicación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Tipo</td>
+                <td>@item.Ubicacion</td>
+                <td>
+                    <a asp-action="Detalle" asp-route-id="@item.IdElectrodomestico" class="btn btn-info">Detalle</a>
+                    <form asp-controller="Electrodomestico" asp-action="Eliminar" asp-route-id="@item.IdElectrodomestico" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                            <span class="bi bi-trash"></span> Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

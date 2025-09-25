@@ -113,7 +113,7 @@ public class AdoDapper : IAdo
     public async Task AltaElectrodomesticoAsync(Electrodomestico electrodomestico)
     {
         var parametros = ParametrosAltaElectro(electrodomestico);
-        await _conexion.ExecuteAsync("altaElectrdomestico", parametros);
+        await _conexion.ExecuteAsync("altaElectrodomestico", parametros);
         electrodomestico.IdElectrodomestico = parametros.Get<int>("@unidElectrodomestico");
     }
 

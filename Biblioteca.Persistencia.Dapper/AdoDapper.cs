@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Data;
+using System.Threading.Tasks;
 using Dapper;
 
 namespace Biblioteca.Persistencia.Dapper;
@@ -16,6 +17,10 @@ public class AdoDapper : IAdo
     FROM    HistorialRegistro
     WHERE   idElectrodomestico = @id;";
 
+    private readonly string _queryElectrodomesticos
+    = @"SELECT * FROM Electrodomestico;
+      SELECT * FROM HistorialRegistro;";
+
     private readonly string _queryCasa
     = @"SELECT *
         FROM Casa
@@ -24,6 +29,10 @@ public class AdoDapper : IAdo
         SELECT  *
         FROM    Electrodomestico
         WHERE   idCasa = @id;";
+
+    private readonly string _queryCasas
+    = @"SELECT * FROM Casa;
+      SELECT * FROM Electrodomestico;";
 
     private readonly string _deleteCasaQuery
     = @"DELETE FROM Casa 
@@ -195,6 +204,25 @@ public class AdoDapper : IAdo
             await _conexion.ExecuteAsync(_deleteElectrodomesticoQuery, new { id = idElectrodomestico });
             return null;
         }
+
+    public async Task<IEnumerable<Electrodomestico>> ObtenerTodosLosElectrodomesticos()
+{
+    using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomesticos))
+    {
+        var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
+        var historiales = (await registro.ReadAsync<HistorialRegistro>()).ToList();
+
+
+        foreach (var electro in electros)
+        {
+            electro.ConsumoMensual = historiales
+                .Where(h => h.IdElectrodomestico == electro.IdElectrodomestico)
+                .ToList();
+        }
+        return electros;
+    }
+}
+
     // query de Casa
     public Casa? ObtenerCasa(int idCasa)
     {
@@ -224,6 +252,21 @@ public class AdoDapper : IAdo
     {
         await _conexion.ExecuteAsync(_deleteCasaQuery, new { id = idCasa });
     }
+
+    public async Task<IEnumerable<Casa>> ObtenerTodasLasCasasAsync()
+{
+    using (var registro = await _conexion.QueryMultipleAsync(_queryCasas))
+    {
+        var casas = (await registro.ReadAsync<Casa>()).ToList();
+        var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
+
+        foreach (var casa in casas)
+        {
+            casa.Electros = electros.Where(e => e.IdCasa == casa.IdCasa).ToList();
+        }
+        return casas;
+    }
+}
 
     // query de Usuario
     public Usuario? UsuarioPorPass(string Correo, string Contrasenia)

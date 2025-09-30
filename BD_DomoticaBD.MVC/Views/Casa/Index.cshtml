@@ -1,0 +1,28 @@
+@model IEnumerable<Biblioteca.Casa>
+
+<h2>Listado de Casas</h2>
+<a asp-action="Alta" class="btn btn-primary">Agregar Casa</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var casa in Model)
+        {
+            <tr>
+                <td>@casa.IdCasa</td>
+                <td>@casa.Direccion</td>
+                <td>
+                    <a asp-action="Detalle" asp-route-id="@casa.IdCasa" class="btn btn-info btn-sm">Detalle</a>
+                    <form asp-action="Eliminar" asp-route-id="@casa.IdCasa" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

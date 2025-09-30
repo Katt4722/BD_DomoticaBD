@@ -15,6 +15,7 @@ END $$
 DELIMITER;
 CALL altaUsuario (@idUsuarioCori, 'Corina', 'Cori@gmail.com', 22131,1123562);
 CALL altaUsuario (@idUsuarioDani, 'Daniel', 'Dani@gmail.com', 78231,1569823);
+CALL altaUsuario(@idUsuarioZhami, 'Zhami', 'Zhami@gmail.com', 92667,1155478);
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaCasa $$

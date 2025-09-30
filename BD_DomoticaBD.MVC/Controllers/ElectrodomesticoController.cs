@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Biblioteca;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace BD_DomoticaBD.MVC.Controllers;
 
@@ -55,7 +49,6 @@ namespace BD_DomoticaBD.MVC.Controllers;
         return View(modelo);
     }
 
-    // Alta de electrodoméstico (POST para guardar)
     [HttpPost("Alta")]
     public async Task<IActionResult> Alta(Electrodomestico electrodomestico)
     {

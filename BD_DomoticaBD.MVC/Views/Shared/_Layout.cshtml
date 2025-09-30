@@ -25,6 +25,32 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="electrosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Electros
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="electrosDropdown">
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Electrodomestico" asp-action="Alta">Alta</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller=""Electrodomestico" asp-action="Index">Listado</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" itemid="casaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Casa
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="casaDropdown">
+                            <li>
+                                <a class="dropdown-item" asp-controller="Casa" asp-action="Alta">Alta</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-controller="Casa" asp-action="Index">Listado</a>
+                            </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

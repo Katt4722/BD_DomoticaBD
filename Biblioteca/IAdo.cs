@@ -14,10 +14,12 @@ public interface IAdo
     Task AltaElectrodomesticoAsync(Electrodomestico electrodomestico);
     Electrodomestico? ObtenerElectrodomestico(int IdElectrodomestico);
     Task<Electrodomestico?> ObtenerElectrodomesticoAsync(int idElectrodomestico);
-    Task<Electrodomestico?> EliminarElectrodomesticoAsync(int idElectrodomestico); 
+    Task<Electrodomestico?> EliminarElectrodomesticoAsync(int idElectrodomestico);
+    Task<IEnumerable<Electrodomestico>> ObtenerTodosLosElectrodomesticos();
     Casa? ObtenerCasa(int IdCasa);
     Task<Casa?> ObtenerCasaAsync(int IdCasa);
     Task EliminarCasaAsync(int idCasa);
+    Task<IEnumerable<Casa>> ObtenerTodasLasCasasAsync();
     Usuario? UsuarioPorPass(string Correo, string Contrasenia);
     Task<Usuario?> UsuarioPorPassAsync(string Correo, string Contrasenia);
 }

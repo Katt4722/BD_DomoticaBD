@@ -1,0 +1,11 @@
+@model Biblioteca.Casa
+
+<h2>Alta de Casa</h2>
+<form asp-action="Alta" method="post">
+    <div class="mb-3">
+        <label for="Direccion" class="form-label">Dirección</label>
+        <input asp-for="Direccion" class="form-control" />
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>

@@ -41,11 +41,22 @@ public class AdoDapper : IAdo
     private readonly string _deleteElectrodomesticoQuery
     = @"DELETE FROM Electrodomestico 
         WHERE idElectrodomestico = @id;";
+
     private readonly string _queryUsuario
     = @"SELECT Correo, Contrasenia
         FROM Usuario
         WHERE Correo = @correo and Contrasenia = SHA2(@contrasenia, 256);";
 
+
+    private readonly string _queryConsumo
+    = @"SELECT * FROM Consumo
+        WHERE IdConsumo = @id;";
+    private readonly string _queryConsumos
+    = @"SELECT * 
+        FROM Consumo;";
+    private readonly string _deleteConsumoQuery
+    = @"DELETE FROM Consumo 
+        WHERE IdConsumo = @id;";
     public AdoDapper(IDbConnection conexion)
     => _conexion = conexion;
 
@@ -199,29 +210,29 @@ public class AdoDapper : IAdo
         }
     }
 
-        public async Task<Electrodomestico?> EliminarElectrodomesticoAsync(int idElectrodomestico)
-        {
-            await _conexion.ExecuteAsync(_deleteElectrodomesticoQuery, new { id = idElectrodomestico });
-            return null;
-        }
-
-    public async Task<IEnumerable<Electrodomestico>> ObtenerTodosLosElectrodomesticos()
-{
-    using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomesticos))
+    public async Task<Electrodomestico?> EliminarElectrodomesticoAsync(int idElectrodomestico)
     {
-        var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
-        var historiales = (await registro.ReadAsync<HistorialRegistro>()).ToList();
-
-
-        foreach (var electro in electros)
-        {
-            electro.ConsumoMensual = historiales
-                .Where(h => h.IdElectrodomestico == electro.IdElectrodomestico)
-                .ToList();
-        }
-        return electros;
+        await _conexion.ExecuteAsync(_deleteElectrodomesticoQuery, new { id = idElectrodomestico });
+        return null;
     }
-}
+
+    public async Task<IEnumerable<Electrodomestico>> ObtenerTodosLosElectrodomesticosAsync()
+    {
+        using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomesticos))
+        {
+            var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
+            var historiales = (await registro.ReadAsync<HistorialRegistro>()).ToList();
+
+
+            foreach (var electro in electros)
+            {
+                electro.ConsumoMensual = historiales
+                    .Where(h => h.IdElectrodomestico == electro.IdElectrodomestico)
+                    .ToList();
+            }
+            return electros;
+        }
+    }
 
     // query de Casa
     public Casa? ObtenerCasa(int idCasa)
@@ -248,25 +259,25 @@ public class AdoDapper : IAdo
             return casa;
         }
     }
-        public async Task EliminarCasaAsync(int idCasa)
+    public async Task EliminarCasaAsync(int idCasa)
     {
         await _conexion.ExecuteAsync(_deleteCasaQuery, new { id = idCasa });
     }
 
     public async Task<IEnumerable<Casa>> ObtenerTodasLasCasasAsync()
-{
-    using (var registro = await _conexion.QueryMultipleAsync(_queryCasas))
     {
-        var casas = (await registro.ReadAsync<Casa>()).ToList();
-        var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
-
-        foreach (var casa in casas)
+        using (var registro = await _conexion.QueryMultipleAsync(_queryCasas))
         {
-            casa.Electros = electros.Where(e => e.IdCasa == casa.IdCasa).ToList();
+            var casas = (await registro.ReadAsync<Casa>()).ToList();
+            var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
+
+            foreach (var casa in casas)
+            {
+                casa.Electros = electros.Where(e => e.IdCasa == casa.IdCasa).ToList();
+            }
+            return casas;
         }
-        return casas;
     }
-}
 
     // query de Usuario
     public Usuario? UsuarioPorPass(string Correo, string Contrasenia)
@@ -282,5 +293,19 @@ public class AdoDapper : IAdo
         return usuario;
     }
 
+    // query de Consumo
+    public async Task<IEnumerable<Consumo>> ObtenerTodosLosConsumosAsync()
+    {
+        return await _conexion.QueryAsync<Consumo>(_queryConsumos);
+    }
+
+    public async Task<Consumo?> ObtenerConsumoAsync(int idConsumo)
+    {
+        return await _conexion.QueryFirstOrDefaultAsync<Consumo>(_queryConsumo, new { id = idConsumo });
+    }
+    public async Task EliminarConsumoAsync(int idConsumo)
+    {
+        await _conexion.ExecuteAsync(_deleteConsumoQuery, new { id = idConsumo });
+    }
 }
 

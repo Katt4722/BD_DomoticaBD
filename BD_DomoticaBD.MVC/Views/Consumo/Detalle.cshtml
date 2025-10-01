@@ -1,0 +1,13 @@
+@model Biblioteca.Consumo
+@{
+    ViewData["Title"] = "Detalle de Consumo";
+}
+<h2>Detalle de Consumo</h2>
+<ul>
+    <li>ID: @Model.IdConsumo</li>
+    <li>Electrodoméstico: @Model.IdElectrodomestico</li>
+    <li>Inicio: @Model.Inicio</li>
+    <li>Duración: @Model.Duracion</li>
+    <li>Consumo Total: @Model.ConsumoTotal</li>
+</ul>
+<a asp-action="Index">Volver al listado</a>

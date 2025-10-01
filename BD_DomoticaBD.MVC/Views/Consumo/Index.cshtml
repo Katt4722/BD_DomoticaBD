@@ -1,0 +1,36 @@
+@model IEnumerable<Biblioteca.Consumo>
+@{
+    ViewData["Title"] = "Listado de Consumos";
+}
+<h2>Listado de Consumos</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Electrodoméstico</th>
+            <th>Inicio</th>
+            <th>Duración</th>
+            <th>Consumo Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.IdConsumo</td>
+            <td>@item.IdElectrodomestico</td>
+            <td>@item.Inicio</td>
+            <td>@item.Duracion</td>
+            <td>@item.ConsumoTotal</td>
+            <td>
+                <a asp-action="Detalle" asp-route-id="@item.IdConsumo">Detalle</a>
+                <form asp-action="Eliminar" asp-route-id="@item.IdConsumo" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que desea eliminar este consumo?');">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<a asp-action="Alta" class="btn btn-primary">Nuevo Consumo</a>

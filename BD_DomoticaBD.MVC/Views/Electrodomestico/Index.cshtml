@@ -1,16 +1,6 @@
 @model List<Biblioteca.Electrodomestico>
 
-@{
-    var idCasa = ViewBag.IdCasa ?? 1;
-}
-
 <h2>Listado de Electrodomésticos</h2>
-
-<form method="get" asp-controller="Electrodomestico" asp-action="Index" class="mb-3">
-    <label for="idCasa">Selecciona la casa:</label>
-    <input type="number" name="idCasa" id="idCasa" value="@idCasa" min="1" class="form-control" style="width:100px;display:inline-block;" />
-    <button type="submit" class="btn btn-primary btn-sm">Ver</button>
-</form>
 
 <a asp-action="Alta" class="btn btn-primary">Agregar Electrodoméstico</a>
 

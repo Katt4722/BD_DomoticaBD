@@ -16,16 +16,14 @@ namespace BD_DomoticaBD.MVC.Controllers;
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index(int idCasa = 1)
+    public async Task<IActionResult> Index()
     {
-        var casa = await Ado.ObtenerCasaAsync(idCasa);
-        var lista = casa?.Electros ?? new List<Electrodomestico>();
-        ViewBag.IdCasa = idCasa;
-        return View(lista);
+        var electros = await Ado.ObtenerTodosLosElectrodomesticosAsync();
+        return View(electros);
     }
     
 
-    // Detalle de un electrodoméstico
+    // Detalle
     [HttpGet("{id}")]
     public async Task<IActionResult> Detalle(int id)
     {
@@ -66,9 +64,4 @@ namespace BD_DomoticaBD.MVC.Controllers;
         return RedirectToAction("Index", "Home");
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View("Error!");
-    }
     }

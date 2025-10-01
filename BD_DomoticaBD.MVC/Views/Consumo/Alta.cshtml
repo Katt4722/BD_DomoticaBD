@@ -1,0 +1,25 @@
+@model Biblioteca.Consumo
+@{
+    ViewData["Title"] = "Alta de Consumo";
+}
+<h2>Alta de Consumo</h2>
+<form asp-action="Alta" method="post">
+    <div class="form-group">
+        <label>Id Electrodoméstico</label>
+        <input asp-for="IdElectrodomestico" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Inicio</label>
+        <input asp-for="Inicio" type="datetime-local" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Duración</label>
+        <input asp-for="Duracion" type="text" class="form-control" placeholder="hh:mm:ss"/>
+    </div>
+    <div class="form-group">
+        <label>Consumo Total</label>
+        <input asp-for="ConsumoTotal" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+<a asp-action="Index">Volver al listado</a>

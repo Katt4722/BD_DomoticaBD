@@ -21,7 +21,8 @@
                 <td>@item.Tipo</td>
                 <td>@item.Ubicacion</td>
                 <td>
-                    <a asp-action="Detalle" asp-route-id="@item.IdElectrodomestico" class="btn btn-info">Detalle</a>
+                    <a asp-action="Detalle" asp-route-id="@item.IdElectrodomestico" class="btn btn-info">Detalle <i class="bi bi-aspect-ratio"></i></a>
+                    <a asp-controller="Consumo" asp-action="Alta" asp-route-idElectrodomestico="@item.IdElectrodomestico" class="btn btn-success">Agregar Consumo<i class="bi bi-lightbulb"></i></a>
                     <form asp-controller="Electrodomestico" asp-action="Eliminar" asp-route-id="@item.IdElectrodomestico" method="post" style="display:inline;">
                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
                             <span class="bi bi-trash"></span> Eliminar

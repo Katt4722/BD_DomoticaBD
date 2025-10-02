@@ -1,8 +1,12 @@
 @model Biblioteca.Electrodomestico
 
+
 <h2>Alta de Electrodoméstico</h2>
 
 <form asp-action="Alta" method="post">
+
+    
+        <span asp-validation-for="IdCasa" class="text-danger"></span>
     <div class="form-group">
         <label asp-for="Nombre"></label>
         <input asp-for="Nombre" class="form-control" />

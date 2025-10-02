@@ -34,20 +34,17 @@ namespace BD_DomoticaBD.MVC.Controllers;
 
     // Alta 
     [HttpGet("Alta")]
-    public async Task<IActionResult> Alta(int idCasa = 1)
+    public IActionResult Alta(int idCasa = 1)
     {
-        var casas = await Ado.ObtenerTodasLasCasasAsync();
-        ViewBag.Casas = casas;
         var modelo = new Electrodomestico
         {
             IdCasa = idCasa,
             Nombre = "",
             Tipo = "",
             Ubicacion = "",
-            Apagado = false
         };
         return View(modelo);
-}
+    }
 
     [HttpPost("Alta")]
     public async Task<IActionResult> Alta(Electrodomestico electrodomestico)

@@ -24,7 +24,7 @@
             <td>@item.Duracion</td>
             <td>@item.ConsumoTotal</td>
             <td>
-                <a asp-action="Detalle" asp-route-id="@item.IdConsumo">Detalle</a>
+                <a asp-action="Detalle" asp-route-id="@item.IdConsumo" class="btn btn-info">Detalle</a>
                 <form asp-action="Eliminar" asp-route-id="@item.IdConsumo" method="post" style="display:inline;">
                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que desea eliminar este consumo?');">Eliminar</button>
                 </form>

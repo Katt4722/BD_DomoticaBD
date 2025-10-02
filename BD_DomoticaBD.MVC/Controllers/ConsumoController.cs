@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Biblioteca;
 
 namespace BD_DomoticaBD.MVC.Controllers;
+    
+[Route("[controller]")]
 public class ConsumoController : Controller
 {
     private readonly ILogger<ConsumoController> _logger;
@@ -13,12 +15,14 @@ public class ConsumoController : Controller
         _ado = ado;
     }
 
+    [HttpGet]
     public async Task<IActionResult> Index()
     {
         var consumos = await _ado.ObtenerTodosLosConsumosAsync();
         return View(consumos);
     }
 
+    [HttpGet("{id}")]
     public async Task<IActionResult> Detalle(int id)
     {
         var consumo = await _ado.ObtenerConsumoAsync(id);
@@ -26,13 +30,14 @@ public class ConsumoController : Controller
         return View(consumo);
     }
 
+    [HttpGet("Alta")]
     public IActionResult Alta()
     {
         return View();
     }
 
 
-    [HttpPost]
+    [HttpPost("Alta")]
     public async Task<IActionResult> Alta(Consumo consumo)
     {
         if (!ModelState.IsValid) return View(consumo);
@@ -40,7 +45,7 @@ public class ConsumoController : Controller
         return RedirectToAction("Index");
     }
 
-    [HttpPost]
+    [HttpPost("Eliminar/{id}")]
     public async Task<IActionResult> Eliminar(int id)
     {
         await _ado.EliminarConsumoAsync(id);

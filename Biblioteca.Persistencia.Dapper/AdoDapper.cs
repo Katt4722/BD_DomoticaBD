@@ -173,13 +173,14 @@ public class AdoDapper : IAdo
         parametros.Add("@unDuracion", consumo.Duracion);
         parametros.Add("@unConsumoTotal", consumo.ConsumoTotal);
 
-        consumo.IdConsumo = parametros.Get<int>("@unidConsumo");
+        // consumo.IdConsumo = parametros.Get<int>("@unidConsumo");
         return parametros;
     }
     public async Task AltaConsumoAsync(Consumo consumo)
     {
         var parametros = ParametrosAltaConsumo(consumo);
         await _conexion.ExecuteAsync("altaConsumo", parametros);
+        consumo.IdConsumo = parametros.Get<int>("@unidConsumo");
     }
 
     // query de Electrodomestico
@@ -212,27 +213,29 @@ public class AdoDapper : IAdo
 
     public async Task<Electrodomestico?> EliminarElectrodomesticoAsync(int idElectrodomestico)
     {
+        await _conexion.ExecuteAsync("DELETE FROM HistorialRegistro WHERE idElectrodomestico = @id", new { id = idElectrodomestico });
         await _conexion.ExecuteAsync(_deleteElectrodomesticoQuery, new { id = idElectrodomestico });
         return null;
     }
 
     public async Task<IEnumerable<Electrodomestico>> ObtenerTodosLosElectrodomesticosAsync()
+{
+    using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomesticos))
     {
-        using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomesticos))
+        var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
+        var historiales = (await registro.ReadAsync<HistorialRegistro>()).ToList();
+
+        // Asocia los historiales a cada electrodoméstico
+        foreach (var electro in electros)
         {
-            var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
-            var historiales = (await registro.ReadAsync<HistorialRegistro>()).ToList();
-
-
-            foreach (var electro in electros)
-            {
-                electro.ConsumoMensual = historiales
-                    .Where(h => h.IdElectrodomestico == electro.IdElectrodomestico)
-                    .ToList();
-            }
-            return electros;
+            electro.ConsumoMensual = historiales
+                .Where(h => h.IdElectrodomestico == electro.IdElectrodomestico)
+                .ToList();
         }
+
+        return electros;
     }
+}
 
     // query de Casa
     public Casa? ObtenerCasa(int idCasa)

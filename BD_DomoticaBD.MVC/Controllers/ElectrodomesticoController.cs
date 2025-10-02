@@ -22,7 +22,6 @@ namespace BD_DomoticaBD.MVC.Controllers;
         return View(electros);
     }
     
-
     // Detalle
     [HttpGet("{id}")]
     public async Task<IActionResult> Detalle(int id)
@@ -33,7 +32,7 @@ namespace BD_DomoticaBD.MVC.Controllers;
         return View(electro);
     }
 
-    // Alta de electrodoméstico (GET para mostrar formulario)
+    // Alta 
     [HttpGet("Alta")]
     public IActionResult Alta(int idCasa = 1)
     {

@@ -28,7 +28,7 @@ public class HomeController : Controller
     
     public async Task<IActionResult> Index()
     {
-        var casas = await Ado.ObtenerCasaAsync(5); 
+        var casas = await Ado.ObtenerCasaAsync(2); 
         
         return View(casas);
     }

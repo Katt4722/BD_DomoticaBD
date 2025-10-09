@@ -1,5 +1,7 @@
+using BD_DomoticaBD.MVC.ViewModels;
 using Biblioteca;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BD_DomoticaBD.MVC.Controllers;
 
@@ -34,26 +36,38 @@ namespace BD_DomoticaBD.MVC.Controllers;
 
     // Alta 
     [HttpGet("Alta")]
-    public IActionResult Alta(int idCasa = 1)
+    public async Task<IActionResult> Alta(int idCasa = 1)
     {
-        var modelo = new Electrodomestico
+        // Obtener las casas para poblar el SelectList
+        var casas = await Ado.ObtenerTodasLasCasasAsync(); 
+
+        var modelo = new ViewModelElectrodomestico(casas)
         {
-            IdCasa = idCasa,
-            Nombre = "",
-            Tipo = "",
-            Ubicacion = "",
+            Electrodomestico = new Electrodomestico
+            {
+                IdCasa = idCasa,
+                Nombre = "",
+                Tipo = "",
+                Ubicacion = "",
+            }
         };
+
         return View(modelo);
     }
 
     [HttpPost("Alta")]
-    public async Task<IActionResult> Alta(Electrodomestico electrodomestico)
+    public async Task<IActionResult> Alta(ViewModelElectrodomestico modelo)
     {
-        if (!ModelState.IsValid)
-            return View(electrodomestico);
+            if (!ModelState.IsValid)
+            {
+                var casas = await Ado.ObtenerTodasLasCasasAsync();
+                modelo.DireccionesList = new SelectList(casas, nameof(Casa.IdCasa), nameof(Casa.Direccion));
+                return View(modelo);
+            }
+        
+        await Ado.AltaElectrodomesticoAsync(modelo.Electrodomestico);
 
-        await Ado.AltaElectrodomesticoAsync(electrodomestico);
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(Index));  // Redirigir a la lista de electrodomésticos
     }
 
     [HttpPost("Eliminar/{id}")]

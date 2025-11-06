@@ -17,6 +17,23 @@ html {
   min-height: 100%;
 }
 
+.btn-fucsia {
+    background-color: #ff00bf;
+    color: #fff;
+    border: none;
+    transition: background-color 0.15s ease, transform 0.06s ease;
+}
+.btn-fucsia:hover,
+.btn-fucsia:focus {
+    background-color: #ff66d1; 
+    color: #fff;
+}
+.btn-fucsia:active {
+    transform: translateY(1px);
+}
+
+.min-vh-100 { min-height: 100vh; }
+
 body {
   margin-bottom: 60px;
 }

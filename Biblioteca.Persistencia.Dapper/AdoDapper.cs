@@ -43,9 +43,13 @@ public class AdoDapper : IAdo
         WHERE idElectrodomestico = @id;";
 
     private readonly string _queryUsuario
-    = @"SELECT Correo, Contrasenia
+    = @"SELECT idUsuario AS IdUsuario,
+            Nombre,
+            Correo,
+            contrasenia AS Contrasenia,
+            Telefono
         FROM Usuario
-        WHERE Correo = @correo and Contrasenia = SHA2(@contrasenia, 256);";
+        WHERE Correo = @correo AND Contrasenia = SHA2(@contrasenia, 256);";
 
 
     private readonly string _queryConsumo
@@ -285,15 +289,13 @@ public class AdoDapper : IAdo
     // query de Usuario
     public Usuario? UsuarioPorPass(string Correo, string Contrasenia)
     {
-        var usuario = _conexion.QueryFirstOrDefault(_queryUsuario, new { correo = Correo, contrasenia = Contrasenia });
-        return usuario;
-
+        return _conexion.QueryFirstOrDefault<Usuario>(_queryUsuario, new { correo = Correo, contrasenia = Contrasenia });
     }
 
     public async Task<Usuario?> UsuarioPorPassAsync(string Correo, string Contrasenia)
     {
-        var usuario = await _conexion.QueryFirstOrDefaultAsync(_queryUsuario, new { correo = Correo, contrasenia = Contrasenia });
-        return usuario;
+        return await _conexion.QueryFirstOrDefaultAsync<Usuario>(_queryUsuario, new { correo = Correo, contrasenia = Contrasenia });
+
     }
 
     // query de Consumo

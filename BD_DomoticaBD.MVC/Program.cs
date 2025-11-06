@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using Biblioteca;
 using MySqlConnector;
 using System.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,14 @@ builder.Services.AddScoped<IAdo>(sp =>
     var connection = new MySqlConnection(connectionString);
     return new AdoDapper(connection);
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.ExpireTimeSpan = TimeSpan.FromHours(8);
+        options.SlidingExpiration = true;
+    });
 
 var app = builder.Build();
 
@@ -31,7 +40,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+// Ruta para que la raíz vaya al Login
+app.MapControllerRoute( 
+    name: "root",
+    pattern: "",
+    defaults: new { controller = "Account", action = "Login" });
 
 app.MapControllerRoute(
     name: "default",

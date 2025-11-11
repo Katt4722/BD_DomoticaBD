@@ -1,8 +1,11 @@
 using Biblioteca;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BD_DomoticaBD.MVC.Controllers;
 
+
+[Authorize]
 [Route("[controller]")]
 public class CasaController : Controller
 {

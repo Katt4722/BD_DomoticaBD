@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Biblioteca;
 
 namespace BD_DomoticaBD.MVC.Controllers;
     
+[Authorize]
 [Route("[controller]")]
 public class ConsumoController : Controller
 {

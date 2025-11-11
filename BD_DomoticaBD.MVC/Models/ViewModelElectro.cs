@@ -6,10 +6,11 @@ namespace BD_DomoticaBD.MVC.ViewModels
     public class ViewModelElectrodomestico
 
     {
-        public SelectList DireccionesList { get; set; }
+        public SelectList? DireccionesList { get; set; }
         public Electrodomestico Electrodomestico { get; set; }
         public int? IdCasaSeleccionado { get; set; }
-        public ViewModelElectrodomestico() { }
+        public bool Encendido { get; set; }
+        public  ViewModelElectrodomestico() { }
         public ViewModelElectrodomestico(IEnumerable<Casa> casas, Electrodomestico? electrodomestico = null)
         {
             DireccionesList = new SelectList(casas, nameof(Casa.IdCasa), nameof(Casa.Direccion));
@@ -20,6 +21,7 @@ namespace BD_DomoticaBD.MVC.ViewModels
                     Nombre = "",
                     Tipo = "",
                     Ubicacion = "",
+                    Encendido = false
                 };
                 IdCasaSeleccionado = 0;
             }

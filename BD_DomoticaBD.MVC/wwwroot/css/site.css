@@ -37,3 +37,91 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+:root{
+    --fucsia: #d63384;
+    --fucsia-light: #e76aa6;
+    --brand-violet: #6b5bff;
+    --brand-azul: #3b82f6;
+    --danger: #e03131;
+    --bg-1: #fff7fb;
+    --bg-2: #f6f1ff;
+    --accent: #9b8cff;
+}
+
+body {
+    background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.6), transparent 10%),
+                linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before{
+    content: "";
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06), transparent 6%),
+                      radial-gradient(circle at 80% 80%, rgba(155,140,255,0.04), transparent 6%);
+    mix-blend-mode: overlay;
+}
+
+.btn-fucsia{
+    background: var(--fucsia);
+    color: #fff;
+    border: none;
+}
+.btn-fucsia:hover, .btn-fucsia:focus{
+    background: var(--fucsia-light);
+    color: #fff;
+}
+
+.btn-brand{
+    background: var(--brand-violet);
+    color: #fff;
+    border: none;
+}
+.btn-brand:hover, .btn-brand:focus{
+    background: color-mix(in srgb, var(--brand-violet) 70%, white);
+}
+
+.btn-circle{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.btn-icon{
+    padding: 6px 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+}
+
+.btn-icon-danger{
+    background: transparent;
+    color: var(--danger);
+    border: none;
+}
+.btn-icon-danger:hover{
+    background: rgba(224,49,49,0.08);
+}
+
+.btn-icon-accent{
+    background: transparent;
+    color: var(--brand-violet);
+    border: none;
+}
+.btn-icon-accent:hover{
+    background: rgba(107,91,255,0.06);
+}
+
+/* pequeños ajustes visuales */
+.card {
+    border-radius: 12px;
+}

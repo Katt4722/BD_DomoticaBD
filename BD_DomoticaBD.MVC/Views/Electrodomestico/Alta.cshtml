@@ -22,8 +22,23 @@
     <div class="form-group">
         <label asp-for="@Model.Electrodomestico.IdCasa"></label>
         <select asp-for="@Model.Electrodomestico.IdCasa" asp-items="@Model.DireccionesList"></select>
-        @* <input asp-for="Electrodomestico.IdCasa" type="hidden" /> *@
     </div>
-    <button type="submit" class="btn btn-success">Guardar</button>
-    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+    <div class="mb-3 form-check form-switch">
+        <input asp-for="Electrodomestico.Encendido" class="form-check-input" type="checkbox" id="Encendido" />
+        <label class="form-check-label" for="Encendido">Encendido</label>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
+        <button type="submit" class="btn btn-brand btn-lg">
+            <i class="bi bi-check-lg me-1"></i> Guardar
+        </button>
+
+        <button type="button" class="btn btn-circle btn-brand" title="Estado" aria-hidden="true">
+            <i class="bi bi-power"></i>
+        </button>
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-outline-secondary">Volver</a>
+    </div>
 </form>

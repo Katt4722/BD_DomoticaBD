@@ -39,7 +39,6 @@ public class AccountController : Controller
             return View();
         }
 
-        
         var usuario = await _ado.UsuarioPorPassAsync(correo, contrasenia);
         if (usuario == null)
         {
@@ -65,6 +64,55 @@ public class AccountController : Controller
             return Redirect(returnUrl);
 
         return RedirectToAction("Index", "Electrodomestico");
+    }
+    
+    [AllowAnonymous]
+    [HttpGet("Register")]
+    public IActionResult Register(string? returnUrl = null)
+    {
+        ViewData["ReturnUrl"] = returnUrl;
+        return View();
+    }
+
+    [AllowAnonymous]
+    [HttpPost("Register")]
+    public async Task<IActionResult> Register(string nombre, string correo, string contrasenia, string telefono, string? returnUrl = null)
+    {
+        ViewData["ReturnUrl"] = returnUrl;
+
+        if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(correo) || string.IsNullOrWhiteSpace(contrasenia))
+        {
+            ModelState.AddModelError(string.Empty, "Complete los campos requeridos.");
+            return View();
+        }
+
+        var nuevo = new Biblioteca.Usuario
+        {
+            Nombre = nombre,
+            Correo = correo,
+            Contrasenia = contrasenia,
+            Telefono = telefono
+        };
+
+        await _ado.AltaUsuarioAsync(nuevo);
+
+        // Inicia la sesión automáticamente usando cookies
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, nuevo.Nombre ?? string.Empty),
+            new Claim(ClaimTypes.Email, nuevo.Correo ?? string.Empty)
+        };
+
+        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var principal = new ClaimsPrincipal(claimsIdentity);
+
+        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+        // Redirigir al returnUrl si es local, si no llevar a Home/Index
+        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            return Redirect(returnUrl);
+
+        return RedirectToAction("Index", "Home");
     }
 
     [HttpPost("Logout")]

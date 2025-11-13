@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
+    html {
     font-size: 16px;
-  }
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 .btn-fucsia {
@@ -35,7 +35,7 @@ html {
 .min-vh-100 { min-height: 100vh; }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 :root{
@@ -62,7 +62,7 @@ body::before{
     position: fixed;
     inset: 0;
     background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06), transparent 6%),
-                      radial-gradient(circle at 80% 80%, rgba(155,140,255,0.04), transparent 6%);
+                        radial-gradient(circle at 80% 80%, rgba(155,140,255,0.04), transparent 6%);
     mix-blend-mode: overlay;
 }
 
@@ -121,7 +121,18 @@ body::before{
     background: rgba(107,91,255,0.06);
 }
 
-/* pequeños ajustes visuales */
 .card {
     border-radius: 12px;
+}
+
+.btn-navy-violet{
+    background: linear-gradient(135deg, #0b3b72 0%, #5b43ff 100%); /* navy -> violet */
+    color: #fff;
+    border: none;
+}
+.btn-navy-violet:hover, .btn-navy-violet:focus {
+    background: linear-gradient(135deg, #063059 0%, #7a66ff 100%);
+    color: #fff;
+    outline: none;
+    box-shadow: 0 0 0 0.15rem rgba(91,67,255,0.18);
 }

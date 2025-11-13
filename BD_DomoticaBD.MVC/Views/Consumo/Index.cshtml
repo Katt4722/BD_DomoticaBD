@@ -24,13 +24,15 @@
             <td>@item.Duracion</td>
             <td>@item.ConsumoTotal</td>
             <td>
-                <a asp-action="Detalle" asp-route-id="@item.IdConsumo" class="btn btn-info">Detalle</a>
+                <a asp-action="Detalle" asp-route-id="@item.IdConsumo" class="btn btn-icon btn-icon-accent">Detalle <i class="bi bi-card-text"></i></a>
                 <form asp-action="Eliminar" asp-route-id="@item.IdConsumo" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que desea eliminar este consumo?');">Eliminar</button>
+                    <button type="submit" class="btn btn-icon btn-icon-danger" onclick="return confirm('¿Seguro que desea eliminar este consumo?');">Eliminar
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </form>
             </td>
         </tr>
     }
     </tbody>
 </table>
-<a asp-action="Alta" class="btn btn-primary">Nuevo Consumo</a>
+<a asp-action="Alta" class="btn btn-navy-violet">Nuevo Consumo</a>

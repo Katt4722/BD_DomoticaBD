@@ -1,7 +1,7 @@
 @model IEnumerable<Biblioteca.Casa>
 
 <h2>Listado de Casas</h2>
-<a asp-action="Alta" class="btn btn-primary">Agregar Casa</a>
+<a asp-action="Alta" class="btn btn-navy-violet">Agregar Casa</a>
 <table class="table">
     <thead>
         <tr>
@@ -16,10 +16,10 @@
             <tr>
                 <td>@casa.IdCasa</td>
                 <td>@casa.Direccion</td>
-                <td class="text-center">
-                    <a asp-action="Detalle" asp-route-id="@casa.IdCasa" class="btn btn-info btn-sm">Detalle</a>
+                <td>
+                    <a asp-action="Detalle" asp-route-id="@casa.IdCasa" class="btn btn-icon btn-icon-accent"> Detalle <i class="bi bi-card-text"></i></a>
                     <form asp-action="Eliminar" asp-route-id="@casa.IdCasa" method="post" class="d-inline ms-1">
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar
+                        <button type="submit" class="btn btn-icon btn-icon-danger">
                             <i class="bi bi-trash"></i>
                         </button>
                     </form>

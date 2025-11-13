@@ -5,22 +5,16 @@
 
 <h2 align="center"> E.T. Nº12 D.E. 1º "Libertador Gral. José de San Martín" </h2>
 
-**Alumnos**:
-* **Karen Mejia**: Encargada de hacer la BD, las clases en C#, Dapper, Tests y Grants.
+**Desarrolado por**:
+* **Karen Mejia**: Encargada de hacer la BD, las clases en C#, Dapper, Tests y Grants. Y la implementacion de MVC
 
-* **Jeni Leiva**: Encargada de realizar el DER.
-
-* **Hernán Vazquez**: Hizo los Triggers. 
-
-* **Joel Tito**: Hizo los SP y los SF.
-
-**Asignatura**:  AGBD
+**Asignatura**:  PSR
 
 **Nombre TP**: Domotica
 
-**Curso**: 5to 7ma
+**Curso**: 6to 7ma
 
-**Año**:  2024
+**Año**:  2025
 
 # Domotica
 Este proyecto se basa en Base de Datos de Domotica,con el objetivo de uso cotidiano y comodidad. A través de esta BD, podrás controlar cualquier electrodoméstico que se encuentre en tu hogar, independientemente de tu ubicación; tendrás la comodidad de encenderlos o apagarlos sin estar presente en ella, podrás ver el consumo de dicho electrodoméstico para saber cuanto gastaste mensualmente, podrás ver todos los electrodomésticos que esten en tu casa en un formato de lista, y un dato no menor podrás tener más de dos casas desde tu mismo usuario y poder acceder a ellas en simultaneo.
@@ -35,7 +29,7 @@ https://github.com/Katt4722/BD_Domotica
 
 ## Pre-requisitos 
 
-- .NET 8 (SDK .NET 8.0.105) - [Descargar](https://dotnet.microsoft.com/es-es/download/dotnet/8.0)
+- .NET 9 (SDK .NET 9.0.X) - [Descargar](https://dotnet.microsoft.com/es-es/download/dotnet/9.0)
 - Visual Studio Code - [Descargar](https://code.visualstudio.com/#alt-downloads)
 - Git - [Descargar](https://git-scm.com/downloads)
 - MySQL - [Descargar](https://dev.mysql.com/downloads/mysql/)
@@ -119,3 +113,5 @@ El proyecto fue construido utilizando las siguientes herramientas y versiones:
 * Entity Framework Core
 * MySQL (versión 8.0 o superior)
 * XUnit (para pruebas unitarias)
+* ASP.NET Core MVC (para el manejo del patrón Modelo-Vista-Controlador (MVC))
+* Autenticacion basada en cookie (Utiliza el middleware con cookies para manejar la sesión del usuario y almacenar la información de autenticación de manera segura.)

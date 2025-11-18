@@ -91,7 +91,7 @@ Para desplegar el proyecto, sigue los siguientes pasos:
      ```
      dotnet run
      ```
-    - Ejecuta el proyecto pero permitiendo que las maquinas de tu red lan puedan interactuar con el proyecto: 
+   - Ejecuta el proyecto pero permitiendo que las maquinas de tu red lan puedan interactuar con el proyecto: 
      ```
      dotnet run --urls "http://0.0.0.0:5000"
      ```

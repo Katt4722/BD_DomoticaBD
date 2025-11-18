@@ -91,6 +91,10 @@ Para desplegar el proyecto, sigue los siguientes pasos:
      ```
      dotnet run
      ```
+    - Ejecuta el proyecto pero permitiendo que las maquinas de tu red lan puedan interactuar con el proyecto: 
+     ```
+      dotnet run --urls "http://0.0.0.0:5000"
+     ```
 
 4. **Probar el proyecto**:
    - Para ejecutar las pruebas unitarias, utiliza el siguiente comando:

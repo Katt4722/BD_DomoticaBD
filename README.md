@@ -5,12 +5,12 @@
 
 <h2 align="center"> E.T. Nº12 D.E. 1º "Libertador Gral. José de San Martín" </h2>
 
-**Desarrolado por**:
-* **Karen Mejia**: Encargada de hacer la BD, las clases en C#, Dapper, Tests y Grants. Y la implementacion de MVC
+**Desarrollado por**:
+* **Karen Mejia**: Encargada de hacer la BD, las clases en C#, Dapper, Tests y Grants. E implementar MVC al proyecto, además de que se agregaron estilos para que tenga una linda visualización y que sea interactivo para el usuario.
 
 **Asignatura**:  PSR
 
-**Nombre TP**: Domotica
+**Nombre TP**: Domótica
 
 **Curso**: 6to 7ma
 

@@ -28,7 +28,7 @@ public class CasaController : Controller
     [HttpGet("{id}")]
     public async Task<IActionResult> Detalle(int id)
     {
-        var casa = await Ado.ObtenerCasaAsync(id);
+        var casa = await Ado.ObtenerCasaDetalleAsync(id);
         if (casa == null)
             return NotFound();
         return View(casa);

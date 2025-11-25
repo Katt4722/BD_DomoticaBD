@@ -1,5 +1,16 @@
 @model Biblioteca.Casa
 
+
 <h2>Detalle de Casa</h2>
 <p><strong>Id:</strong> @Model.IdCasa</p>
 <p><strong>Dirección:</strong> @Model.Direccion</p>
+
+<h3>Electrodoméstico</h3>
+<ul>
+@foreach (var e in Model.Electros ?? Enumerable.Empty<Biblioteca.Electrodomestico>())
+{
+    <li>
+        <strong>@e.Nombre</strong> — @e.Ubicacion
+    </li>
+}
+</ul>

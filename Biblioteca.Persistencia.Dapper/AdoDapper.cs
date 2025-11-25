@@ -21,6 +21,15 @@ public class AdoDapper : IAdo
     = @"SELECT * FROM Electrodomestico;
       SELECT * FROM HistorialRegistro;";
 
+    private readonly string _queryElectroDetalle
+    = @"SELECT  *
+        FROM    Electrodomestico
+        WHERE   idElectrodomestico = @id;
+
+        SELECT  *
+        FROM    Consumo
+        WHERE   idElectrodomestico = @id;
+        ORDER BY Inicio DESC";
     private readonly string _queryCasa
     = @"SELECT *
         FROM Casa
@@ -36,6 +45,15 @@ public class AdoDapper : IAdo
 
     private readonly string _deleteCasaQuery
     = @"DELETE FROM Casa 
+        WHERE idCasa = @id;";
+
+    private readonly string _queryCasaDetalle
+    = @"SELECT *
+        FROM Casa
+        WHERE idCasa = @id;
+        
+        SELECT * 
+        FROM Electrodomestico 
         WHERE idCasa = @id;";
 
     private readonly string _deleteElectrodomesticoQuery
@@ -221,25 +239,38 @@ public class AdoDapper : IAdo
         await _conexion.ExecuteAsync(_deleteElectrodomesticoQuery, new { id = idElectrodomestico });
         return null;
     }
+    
+    public async Task<Electrodomestico?> ObtenerElectroDetalleAsync(int idElectrodomestico)
+    {
+        using (var registro = await _conexion.QueryMultipleAsync(_queryElectroDetalle, new { id = idElectrodomestico }))
+        {
+            var electrodomestico = await registro.ReadSingleOrDefaultAsync<Electrodomestico>();
+            if (electrodomestico is not null)
+            {
+                electrodomestico.ConsumoMensual = (await registro.ReadAsync<HistorialRegistro>()).ToList();
+            }
+            return electrodomestico;
+        }
+    }
 
     public async Task<IEnumerable<Electrodomestico>> ObtenerTodosLosElectrodomesticosAsync()
-{
-    using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomesticos))
     {
-        var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
-        var historiales = (await registro.ReadAsync<HistorialRegistro>()).ToList();
-
-        // Asocia los historiales a cada electrodoméstico
-        foreach (var electro in electros)
+        using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomesticos))
         {
-            electro.ConsumoMensual = historiales
-                .Where(h => h.IdElectrodomestico == electro.IdElectrodomestico)
-                .ToList();
-        }
+            var electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
+            var historiales = (await registro.ReadAsync<HistorialRegistro>()).ToList();
 
-        return electros;
+            // Asocia los historiales a cada electrodoméstico
+            foreach (var electro in electros)
+            {
+                electro.ConsumoMensual = historiales
+                    .Where(h => h.IdElectrodomestico == electro.IdElectrodomestico)
+                    .ToList();
+            }
+
+            return electros;
+        }
     }
-}
 
     // query de Casa
     public Casa? ObtenerCasa(int idCasa)
@@ -283,6 +314,19 @@ public class AdoDapper : IAdo
                 casa.Electros = electros.Where(e => e.IdCasa == casa.IdCasa).ToList();
             }
             return casas;
+        }
+    }
+
+    public async Task<Casa?> ObtenerCasaDetalleAsync(int idCasa)
+    {
+        using (var registro = await _conexion.QueryMultipleAsync(_queryCasaDetalle, new { id = idCasa }))
+        {
+            var casa = await registro.ReadSingleOrDefaultAsync<Casa>();
+            if (casa is not null)
+            {
+                casa.Electros = (await registro.ReadAsync<Electrodomestico>()).ToList();
+            }
+            return casa;
         }
     }
 

@@ -8,6 +8,10 @@ namespace Biblioteca.Persistencia.Dapper;
 public class AdoDapper : IAdo
 {
     readonly IDbConnection _conexion;
+    public AdoDapper(IDbConnection conexion)
+    {
+        _conexion = conexion ?? throw new ArgumentNullException(nameof(conexion));
+    }
     private readonly string _queryElectrodomestico
     = @"SELECT  *
     FROM    Electrodomestico
@@ -30,6 +34,11 @@ public class AdoDapper : IAdo
         FROM    Consumo
         WHERE   idElectrodomestico = @id;
         ORDER BY Inicio DESC";
+
+    private readonly string _queryelestroEstado
+    = @"UPDATE Electrodomestico
+        SET Apagado = NOT Apagado
+        WHERE idElectrodomestico = @id;";
     private readonly string _queryCasa
     = @"SELECT *
         FROM Casa
@@ -79,8 +88,16 @@ public class AdoDapper : IAdo
     private readonly string _deleteConsumoQuery
     = @"DELETE FROM Consumo 
         WHERE IdConsumo = @id;";
-    public AdoDapper(IDbConnection conexion)
-    => _conexion = conexion;
+
+    private readonly string _queryConsumoPorId
+    = @"SELECT IdConsumo, IdElectrodomestico, Inicio, Duracion, ConsumoTotal
+        FROM Consumo
+        WHERE IdConsumo = @id;";
+
+    private readonly string _queryElectrodomesticoPorId
+     = @"SELECT IdElectrodomestico, Nombre, Tipo, Ubicacion, Apagado
+        FROM Electrodomestico
+        WHERE IdElectrodomestico = @id;";
 
     public void AltaUsuario(Usuario usuario)
     {
@@ -147,7 +164,6 @@ public class AdoDapper : IAdo
         parametros.Add("@unNombre", electrodomestico.Nombre);
         parametros.Add("@unTipo", electrodomestico.Tipo);
         parametros.Add("@unUbicacion", electrodomestico.Ubicacion);
-        parametros.Add("@unEncendido", electrodomestico.Encendido);
         parametros.Add("@unApagado", electrodomestico.Apagado);
         return parametros;
     }
@@ -253,6 +269,11 @@ public class AdoDapper : IAdo
         }
     }
 
+    public async Task CambiarEstadoElectrodomesticoAsync(int id)
+    {
+        await _conexion.ExecuteAsync(_queryelestroEstado, new { id });
+    }
+
     public async Task<IEnumerable<Electrodomestico>> ObtenerTodosLosElectrodomesticosAsync()
     {
         using (var registro = await _conexion.QueryMultipleAsync(_queryElectrodomesticos))
@@ -356,5 +377,22 @@ public class AdoDapper : IAdo
     {
         await _conexion.ExecuteAsync(_deleteConsumoQuery, new { id = idConsumo });
     }
+
+    public async Task<Consumo?> ObtenerConsumoConElectrodomesticoAsync(int idConsumo)
+    {
+        var consumo = await _conexion.QuerySingleOrDefaultAsync<Consumo>(
+            _queryConsumoPorId,
+            new { id = idConsumo });
+
+        if (consumo is null)
+            return null;
+
+        consumo.Electrodomestico = await _conexion.QuerySingleOrDefaultAsync<Electrodomestico>(
+            _queryElectrodomesticoPorId,
+            new { id = consumo.IdElectrodomestico });
+
+        return consumo;
+    }
+
 }
 

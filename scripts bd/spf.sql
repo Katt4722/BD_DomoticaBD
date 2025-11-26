@@ -1,4 +1,5 @@
-Active: 1752002174880@@127.0.0.1@3306@5to_domotica
+--Active: 1752002174880@@127.0.0.1@3306@5to_domotica
+
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaUsuario $$
@@ -52,18 +53,17 @@ CREATE PROCEDURE altaElectrodomestico (OUT unidElectrodomestico INT,
                                     IN unNombre VARCHAR(100),
                                     IN unTipo VARCHAR(50),
                                     IN unUbicacion VARCHAR(50),
-                                    IN unEncendido BOOL,
                                     IN unApagado BOOL)
 BEGIN 
-	INSERT INTO Electrodomestico (idCasa, Nombre, Tipo, Ubicacion, Encendido, Apagado)
-						VALUES (unidCasa, unNombre,unTipo, unUbicacion, unEncendido, unApagado);
+	INSERT INTO Electrodomestico (idCasa, Nombre, Tipo, Ubicacion, Apagado)
+						VALUES (unidCasa, unNombre,unTipo, unUbicacion, unApagado);
 	SET unidElectrodomestico = LAST_INSERT_ID();
 END $$
 
 DELIMITER ;
-CALL AltaElectrodomestico (@idElectrodomestico, @idCasaFlorida, 'Lavarropa', 'Lavarropa', 'Lavadero', FALSE, TRUE);
-CALL AltaElectrodomestico (@idElectrodomestico, 2, 'Heladera', 'Heladera', 'Cocina', FALSE, TRUE);
-CALL AltaElectrodomestico (@idElectrodomestico, 3, 'Cafetera Full', 'Cafetera', 'Mesada', FALSE, TRUE);
+CALL AltaElectrodomestico (@idElectrodomestico, @idCasaFlorida, 'Lavarropa', 'Lavarropa', 'Lavadero', TRUE);
+CALL AltaElectrodomestico (@idElectrodomestico, 2, 'Heladera', 'Heladera', 'Cocina', TRUE);
+CALL AltaElectrodomestico (@idElectrodomestico, 3, 'Cafetera Full', 'Cafetera', 'Mesada', TRUE);
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaHistorialRegistro $$

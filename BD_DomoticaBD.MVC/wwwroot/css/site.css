@@ -136,3 +136,7 @@ body::before{
     outline: none;
     box-shadow: 0 0 0 0.15rem rgba(91,67,255,0.18);
 }
+
+a {
+    cursor: pointer;
+}

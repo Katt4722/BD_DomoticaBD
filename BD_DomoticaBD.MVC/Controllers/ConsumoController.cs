@@ -27,7 +27,7 @@ public class ConsumoController : Controller
     [HttpGet("{id}")]
     public async Task<IActionResult> Detalle(int id)
     {
-        var consumo = await _ado.ObtenerConsumoAsync(id);
+        var consumo = await _ado.ObtenerConsumoConElectrodomesticoAsync(id);
         if (consumo == null) return NotFound();
         return View(consumo);
     }

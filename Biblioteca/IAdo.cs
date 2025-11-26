@@ -17,6 +17,7 @@ public interface IAdo
     Task<Electrodomestico?> EliminarElectrodomesticoAsync(int idElectrodomestico);
     Task<IEnumerable<Electrodomestico>> ObtenerTodosLosElectrodomesticosAsync();
     Task <Electrodomestico?> ObtenerElectroDetalleAsync(int idElectrodomestico);
+    Task CambiarEstadoElectrodomesticoAsync(int id);
     Casa? ObtenerCasa(int IdCasa);
     Task<Casa?> ObtenerCasaAsync(int IdCasa);
     Task EliminarCasaAsync(int idCasa);
@@ -27,4 +28,5 @@ public interface IAdo
     Task<IEnumerable<Consumo>> ObtenerTodosLosConsumosAsync();
     Task<Consumo?> ObtenerConsumoAsync(int idConsumo);
     Task EliminarConsumoAsync(int idConsumo);
+    Task<Consumo?> ObtenerConsumoConElectrodomesticoAsync(int idConsumo);
 }

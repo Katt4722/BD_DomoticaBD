@@ -21,7 +21,7 @@ namespace BD_DomoticaBD.MVC.ViewModels
                     Nombre = "",
                     Tipo = "",
                     Ubicacion = "",
-                    Encendido = false
+                    Apagado = false 
                 };
                 IdCasaSeleccionado = 0;
             }

@@ -6,5 +6,6 @@ public class Consumo
     public DateTime Inicio { get; set; }
     public TimeSpan Duracion { get; set; }
     public float ConsumoTotal { get; set; }
+    public Electrodomestico? Electrodomestico { get; set; }
 
 }

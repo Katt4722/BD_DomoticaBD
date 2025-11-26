@@ -80,4 +80,11 @@ public class ElectrodomesticoController : Controller
         return RedirectToAction("Index", "Home");
     }
 
+
+    [HttpPost]
+    public async Task<IActionResult> EstadoElectro(int id)
+    {
+        await Ado.CambiarEstadoElectrodomesticoAsync(id);
+        return RedirectToAction(nameof(Index));
+    }
 }

@@ -7,7 +7,6 @@ public class Electrodomestico
    public required string Nombre { get; set; }
    public required string Tipo { get; set; }
    public required string Ubicacion { get; set; }
-   public bool Encendido { get; set; }
    public bool Apagado { get; set; }
    public List<HistorialRegistro> ConsumoMensual { get; set; } = [];
    //public List<Consumo> Consumos { get; set; } = new();

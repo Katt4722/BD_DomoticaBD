@@ -16,52 +16,60 @@
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Domotica MVC</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBarContent">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navBarContent">
-                        @if (User?.Identity?.IsAuthenticated ?? false)
-                        {
-                            <ul class="navbar-nav me-auto">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="casaDropdown" data-bs-toggle="dropdown">Casa</a>
-                                    <ul class="dropdown-menu" aria-labelledby="casaDropdown">
-                                        <li><a class="dropdown-item" asp-controller="Casa" asp-action="Index">Listado</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Casa" asp-action="Alta">Agregar</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="electroDropdown" data-bs-toggle="dropdown">Electro</a>
-                                    <ul class="dropdown-menu" aria-labelledby="electroDropdown">
-                                        <li><a class="dropdown-item" asp-controller="Electrodomestico" asp-action="Index">Listado</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Electrodomestico" asp-action="Alta">Agregar</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="consumoDropdown" data-bs-toggle="dropdown">Consumo</a>
-                                    <ul class="dropdown-menu" aria-labelledby="consumoDropdown">
-                                        <li><a class="dropdown-item" asp-controller="Consumo" asp-action="Index">Listado</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Consumo" asp-action="Alta">Agregar</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                            <ul class="navbar-nav ms-auto">
-                                <li class="nav-item">
-                                    <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                                        <button type="submit" class="btn btn-outline-secondary">Cerrar sesión</button>
-                                    </form>
-                                </li>
+                <div class="collapse navbar-collapse" id="navBarContent">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="casaDropdown" data-bs-toggle="dropdown">Casa</a>
+                            <ul class="dropdown-menu" aria-labelledby="casaDropdown">
+                                <li><a class="dropdown-item" asp-controller="Casa" asp-action="Index">Listado</a></li>
+                                <li><a class="dropdown-item" asp-controller="Casa" asp-action="Alta">Agregar</a></li>
                             </ul>
-                        }
-                        else
-                        {
-                            <ul class="navbar-nav ms-auto">
-                                <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Login">Iniciar sesión</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Register">Crear cuenta</a></li>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="electroDropdown" data-bs-toggle="dropdown">Electro</a>
+                            <ul class="dropdown-menu" aria-labelledby="electroDropdown">
+                                <li><a class="dropdown-item" asp-controller="Electrodomestico" asp-action="Index">Listado</a></li>
+                                <li><a class="dropdown-item" asp-controller="Electrodomestico" asp-action="Alta">Agregar</a></li>
                             </ul>
-                        }
-                    </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="consumoDropdown" data-bs-toggle="dropdown">Consumo</a>
+                            <ul class="dropdown-menu" aria-labelledby="consumoDropdown">
+                                <li><a class="dropdown-item" asp-controller="Consumo" asp-action="Index">Listado</a></li>
+                                <li><a class="dropdown-item" asp-controller="Consumo" asp-action="Alta">Agregar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <ul class="navbar-nav ms-auto align-items-center">
+                            
+                            <li class="nav-item me-3">
+                                <span class="color: black;">
+                                    ¡Hola, @User.Identity.Name!
+                                </span>
+                            </li>
+
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-outline-secondary">Cerrar sesión</button>
+                                </form>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Login">Iniciar sesión</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Register">Crear cuenta</a></li>
+                        </ul>
+                    }
                 </div>
+            </div>
         </nav>
     </header>
     <div class="container">

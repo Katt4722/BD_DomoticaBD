@@ -10,7 +10,10 @@
 @foreach (var e in Model.Electros ?? Enumerable.Empty<Biblioteca.Electrodomestico>())
 {
     <li>
-        <strong>@e.Nombre</strong> — @e.Ubicacion
+        <a href="@Url.Action("Detalle", "Electrodomestico", new { id = e.IdElectrodomestico })" 
+           style="text-decoration:none; color:inherit; font-weight:bold;">
+            <strong>@e.Nombre</strong> — @e.Ubicacion
+        </a>
     </li>
 }
 </ul>

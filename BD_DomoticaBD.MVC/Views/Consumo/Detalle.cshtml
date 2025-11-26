@@ -4,10 +4,10 @@
 }
 <h2>Detalle de Consumo</h2>
 
-    <p><strong>Id:</strong>@Model.IdConsumo</p>
-    <p><strong>Electrodoméstico:</strong>@Model.IdElectrodomestico</p>
-    <p><strong>Inicio</strong> @Model.Inicio</p>
+    <p><strong>IdConsumo:</strong> @Model.IdConsumo</p>
+    <p><strong>Electrodoméstico:</strong> @Model.Electrodomestico?.Nombre</p>
+    <p><strong>Inicio:</strong> @Model.Inicio</p>
     <p><strong>Duración:</strong> @Model.Duracion</p>
-    <p><strong>Consumo Total:</strong> @Model.ConsumoTotal</p>
+    <p><strong>Consumo Total:</strong> @Model.ConsumoTotal W </p>
 
 <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>

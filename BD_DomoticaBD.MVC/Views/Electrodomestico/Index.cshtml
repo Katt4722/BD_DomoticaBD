@@ -21,6 +21,25 @@
                 <td>@item.Tipo</td>
                 <td>@item.Ubicacion</td>
                 <td>
+                    <form asp-action="EstadoElectro" asp-controller="Electrodomestico" 
+                        method="post" class="d-inline ms-1">
+                        <input type="hidden" name="id" value="@item.IdElectrodomestico" />
+
+                        <button type="submit"
+                                class="btn btn-link p-0 border-0"
+                                style="background: none;"
+                                title="@(item.Apagado ? "Encender" : "Apagar")">
+
+                            @if (item.Apagado)
+                            {
+                                <i class="bi bi-power" style="color: red; font-size: 1.4rem;"></i>
+                            }
+                            else
+                            {
+                                <i class="bi bi-power" style="color: #28a745; font-size: 1.4rem;"></i>
+                            }
+                        </button>
+                    </form>
                     <a asp-action="Detalle" asp-route-id="@item.IdElectrodomestico"  class="btn btn-icon btn-icon-accent"> Detalle 
                     <i class="bi bi-card-text"></i>
                     </a>

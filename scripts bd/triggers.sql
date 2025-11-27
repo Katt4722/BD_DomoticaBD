@@ -15,9 +15,9 @@ CREATE TRIGGER BefInsElectrodomestico
 BEFORE INSERT ON Electrodomestico
 FOR EACH ROW
 BEGIN
-    IF NEW.Encendido = 1 AND NEW.Apagado = 1 THEN
+    IF NEW.Apagado = 1 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Un electrodoméstico no puede estar encendido y apagado al mismo tiempo.';
+        SET MESSAGE_TEXT = 'Para encender un electrodoméstico debe ser 1.';
     END IF;
 END$$
 DELIMITER ;
@@ -30,7 +30,7 @@ CREATE TRIGGER AftInsConsumo AFTER INSERT ON Consumo
 FOR EACH ROW
 BEGIN
 	UPDATE Electrodomestico
-    SET Encendido = 0, Apagado = 1
+    SET Apagado = 1
     WHERE idElectrodomestico = NEW.idElectrodomestico;
 END $$
 

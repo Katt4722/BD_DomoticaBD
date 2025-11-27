@@ -13,7 +13,6 @@ public class ElectrodomesticoTest : TestBase
             Nombre = "AGH123",
             Tipo = "Lavaropa",
             Ubicacion = "Lavanderia",
-            Encendido = false,
             Apagado = true
         };
         Ado.AltaElectrodomestico(Lavarropa);

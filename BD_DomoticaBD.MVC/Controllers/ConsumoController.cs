@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Biblioteca;
+using System.Security.Claims;
 
 namespace BD_DomoticaBD.MVC.Controllers;
     
@@ -20,7 +21,11 @@ public class ConsumoController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        var consumos = await _ado.ObtenerTodosLosConsumosAsync();
+        IEnumerable<Consumo> consumos;
+
+        var idUsuario = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        consumos = await _ado.ObtenerConsumosPorUsuarioAsync(idUsuario);
+
         return View(consumos);
     }
 

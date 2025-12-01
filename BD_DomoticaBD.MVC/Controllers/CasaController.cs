@@ -1,6 +1,7 @@
 using Biblioteca;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace BD_DomoticaBD.MVC.Controllers;
 
@@ -21,7 +22,14 @@ public class CasaController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        var casas = await Ado.ObtenerTodasLasCasasAsync();
+        IEnumerable<Casa> casas;
+        if (User.IsInRole("Admin"))
+            casas = await Ado.ObtenerTodasLasCasasAsync();
+        else
+        {
+            var idUsuario = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); 
+            casas = await Ado.ObtenerCasasPorUsuarioAsync(idUsuario);
+        }
         return View(casas);
     }
 
@@ -50,9 +58,15 @@ public class CasaController : Controller
         if (!ModelState.IsValid)
             return View(casa);
 
-        await Ado.AltaCasaAsync(casa);
+        // Suponiendo que ya tienes el idUsuario del usuario logueado
+        var idUsuario = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        
+        // Crear la casa y asociarla al usuario
+        await Ado.AltaCasaYAsociarUsuarioAsync(casa, idUsuario);
+        
         return RedirectToAction(nameof(Index));
     }
+
 
     [HttpPost("Eliminar/{id}")]
     public async Task<IActionResult> Eliminar(int id)

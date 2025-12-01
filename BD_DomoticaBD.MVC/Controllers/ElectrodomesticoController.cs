@@ -3,6 +3,7 @@ using Biblioteca;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 
 namespace BD_DomoticaBD.MVC.Controllers;
@@ -23,7 +24,19 @@ public class ElectrodomesticoController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        var electros = await Ado.ObtenerTodosLosElectrodomesticosAsync();
+        IEnumerable<Electrodomestico> electros;
+
+    // Verificamos si es admin o no
+        if (User.IsInRole("Admin"))
+        {
+            electros = await Ado.ObtenerTodosLosElectrodomesticosAsync();
+        }
+        else
+        {
+            var idUsuario = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            electros = await Ado.ObtenerElectrodomesticosPorUsuarioAsync(idUsuario);
+        }
+
         return View(electros);
     }
 

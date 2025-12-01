@@ -50,7 +50,8 @@ public class AccountController : Controller
         {
             new Claim(ClaimTypes.NameIdentifier, usuario.IdUsuario.ToString()),
             new Claim(ClaimTypes.Name, usuario.Nombre ?? usuario.Correo),
-            new Claim(ClaimTypes.Email, usuario.Correo)
+            new Claim(ClaimTypes.Email, usuario.Correo),
+            new Claim(ClaimTypes.Role, usuario.EsAdmin ? "Admin" : "User")
         };
 
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -100,7 +101,9 @@ public class AccountController : Controller
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, nuevo.Nombre ?? string.Empty),
-            new Claim(ClaimTypes.Email, nuevo.Correo ?? string.Empty)
+            new Claim(ClaimTypes.Email, nuevo.Correo ?? string.Empty),
+            new Claim(ClaimTypes.NameIdentifier, nuevo.IdUsuario.ToString()),
+            new Claim(ClaimTypes.Role, nuevo.EsAdmin ? "Admin" : "User")
         };
 
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

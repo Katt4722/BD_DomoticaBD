@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `Usuario` (
   `Correo` VARCHAR(100) NOT NULL,
   `Contrasenia` CHAR(64) NOT NULL,
   `Telefono` VARCHAR(20) NULL,
+  `EsAdmin` BOOLEAN NOT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `Correo_UNIQUE` (`Correo`)
 ) ENGINE=InnoDB;

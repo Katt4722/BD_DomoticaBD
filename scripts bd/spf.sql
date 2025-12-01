@@ -1,4 +1,4 @@
--- Active: 1764262224822@@127.0.0.1@3306@5to_domotica
+-- Active: 1764617437911@@127.0.0.1@3306@5to_domotica
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaUsuario $$
@@ -6,17 +6,20 @@ CREATE PROCEDURE altaUsuario(OUT unidUsuario INT,
 							IN unNombre VARCHAR(100),
 							IN unCorreo VARCHAR(100),
 							IN uncontrasenia CHAR(64),
-							IN unTelefono VARCHAR(20))
+							IN unTelefono VARCHAR(20),
+							IN esAdmin BOOLEAN)
 BEGIN 
-	INSERT INTO Usuario (Nombre, Correo, contrasenia, Telefono)
-				VALUES (unNombre, unCorreo, uncontrasenia, unTelefono);
+	INSERT INTO Usuario (Nombre, Correo, contrasenia, Telefono, EsAdmin)
+				VALUES (unNombre, unCorreo, uncontrasenia, unTelefono, esAdmin);
 	SET unidUsuario = LAST_INSERT_ID();
 END $$
 
 DELIMITER;
-CALL altaUsuario (@idUsuarioCori, 'Corina', 'Cori@gmail.com', 22131,1123562);
-CALL altaUsuario (@idUsuarioDani, 'Daniel', 'Dani@gmail.com', 78231,1569823);
-CALL altaUsuario(@idUsuarioZhami, 'Zhami', 'Zhami@gmail.com', 92667,1155478);
+CALL altaUsuario (@idUsuarioCori, 'Corina', 'Cori@gmail.com', 22131,1123562, FALSE);
+CALL altaUsuario (@idUsuarioDani, 'Daniel', 'Dani@gmail.com', 78231,1569823, FALSE);
+CALL altaUsuario(@idUsuarioZhami, 'Zhami', 'Zhami@gmail.com', 92667,1155478, FALSE);
+CALL altaUsuario (@idUsuarioAdmin, 'Admin', 'admin@gmail.com', 22157, 1234567890, TRUE);
+
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaCasa $$

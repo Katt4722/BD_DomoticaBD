@@ -95,7 +95,7 @@ public class AdoDapper : IAdo
         WHERE IdConsumo = @id;";
 
     private readonly string _queryElectrodomesticoPorId
-     = @"SELECT IdElectrodomestico, Nombre, Tipo, Ubicacion, Apagado
+    = @"SELECT IdElectrodomestico, Nombre, Tipo, Ubicacion, Apagado
         FROM Electrodomestico
         WHERE IdElectrodomestico = @id;";
 
@@ -115,6 +115,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unCorreo", usuario.Correo);
         parametros.Add("@uncontrasenia", usuario.Contrasenia);
         parametros.Add("@unTelefono", usuario.Telefono);
+        parametros.Add("@esAdmin", usuario.EsAdmin);
         return parametros;
     }
 

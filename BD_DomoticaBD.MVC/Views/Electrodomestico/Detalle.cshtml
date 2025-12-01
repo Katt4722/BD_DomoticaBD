@@ -16,8 +16,17 @@
         <dt class="col-sm-2">IdCasa</dt>
         <dd class="col-sm-10">@Model.IdCasa</dd>
 
-        <dt class="col-sm-2">Apagado</dt>
-        <dd class="col-sm-10">@Model.Apagado</dd>
+        <dt class="col-sm-2">Estado:</dt>
+        <dd class="col-sm-10">
+        @if (Model.Apagado)
+        {
+            <span>El electrodoméstico se encuenta apagado</span>
+        }
+        else
+        {
+            <span>El electrodoméstico se encuenta encendido</span>
+        }
+        </dd>
     </dl>
     @if (Model.ConsumoMensual != null && Model.ConsumoMensual.Any())
     {

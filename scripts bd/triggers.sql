@@ -9,20 +9,6 @@ BEGIN
 END$$
 
 
-DELIMITER $$
-DROP TRIGGER IF EXISTS BefInsElectrodomestico$$
-CREATE TRIGGER BefInsElectrodomestico 
-BEFORE INSERT ON Electrodomestico
-FOR EACH ROW
-BEGIN
-    IF NEW.Apagado = 1 THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Para encender un electrodoméstico debe ser 1.';
-    END IF;
-END$$
-DELIMITER ;
-
-
 -- Trigger para actualizar el consumo total cuando se inserta un nuevo registro en la tabla consumo.
 DELIMITER $$
 DROP TRIGGER IF EXISTS AftInsConsumo$$

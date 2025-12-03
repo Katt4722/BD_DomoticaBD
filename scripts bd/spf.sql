@@ -1,4 +1,4 @@
--- Active: 1764617437911@@127.0.0.1@3306@5to_domotica
+-- Active: 1764783930796@@127.0.0.1@3306@5to_domotica
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaUsuario $$
@@ -47,7 +47,15 @@ BEGIN
 	INSERT INTO casaUsuario (idUsuario, idCasa)
 					VALUES (unidUsuario, unidCasa);
 END $$
-
+DELIMITER;
+CALL altaCasaUsuario(@idUsuarioCori, 2);
+CALL altaCasaUsuario(@idUsuarioDani, 3);
+CALL altaCasaUsuario(3, 5);
+CALL altaCasaUsuario(4, 1);
+CALL altaCasaUsuario(4, 2);
+CALL altaCasaUsuario(4, 3);
+CALL altaCasaUsuario(4, 4);
+CALL altaCasaUsuario(4, 5);
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaElectrodomestico $$
 CREATE PROCEDURE altaElectrodomestico (OUT unidElectrodomestico INT, 
